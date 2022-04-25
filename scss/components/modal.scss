@@ -1,0 +1,40 @@
+.modal {
+  display: none;
+
+  &__overflow {
+    position: absolute;
+    z-index: 45;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition-duration: 0.5s;
+    background-color: $background;
+
+  }
+
+  &__body {
+    position: absolute;
+    top: 106px;
+    width: 273px;
+    height: 319px;
+    z-index: 10;
+    left: 24px;
+    background-color: $white;
+    padding: 14px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    color: gray;
+    font-size: 20px;
+    background-color: inherit;
+    border: none;
+  }
+}
+
+.modal-active {
+  display: block;
+}

@@ -1,0 +1,30 @@
+.modal-settings {
+  position: relative;
+
+  &__text {
+
+  }
+
+  &__body {
+    padding-top: 16px;
+  }
+
+  &__title {
+
+  }
+
+  &__form {
+    padding-top: 8px;
+  }
+
+  &__input {
+    padding: 7px;
+    width: 207px;
+  }
+
+  &__send {
+    padding: 7px;
+    background-color: $white;
+    border: 1px solid #000000;
+  }
+}

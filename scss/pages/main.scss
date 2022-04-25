@@ -1,0 +1,65 @@
+body {
+  background-color: $white;
+}
+
+.chat__container {
+  padding: 8px;
+  height: 533px;
+  width: 320px;
+  border: 1px solid $black;
+  position: relative;
+}
+
+
+.header {
+  padding-bottom: 7px;
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 7px;
+      border: 1px solid #000000;
+      background-color: $white;
+    }
+  }
+
+  &__settings {
+
+  }
+
+  &__exit {
+
+  }
+}
+
+.chat {
+  width: 304px;
+  height: 430px;
+  border: 1px solid #000000;
+}
+
+.footer {
+  padding-top: 8px;
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.form {
+
+  &__message {
+    width: 100%;
+    padding: 6px 7px;
+  }
+
+  &__send {
+    padding: 7px;
+    background-color: $white;
+    border: 1px solid #000000;
+  }
+}
+

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="chat__container container">
+  <header class="header">
+    <div class="header__buttons">
+      <button class="header__settings" type="button">Настройки</button>
+      <button class="header__exit" type="button">Выйти</button>
+    </div>
+  </header>
+  <main>
+    <section class="chat">
+    </section>
+  </main>
+  <footer class="footer">
+    <form action="submit" class="footer__form form">
+      <label>
+        <input class="form__message" type="text" placeholder="сообщение..">
+      </label>
+      <button class="form__send" type="button">-></button>
+    </form>
+  </footer>
+  <div class="modal">
+    <div class="modal__overflow">
+      <div class="modal__body modal-settings">
+        <span class="modal-settings__text">Настройки</span>
+        <div class="modal-settings__body">
+          <span class="modal-settings__title">Имя в чате</span>
+          <form class="modal-settings__form" action="submit">
+            <label>
+              <input class="modal-settings__input" type="text"  placeholder="Ваше имя">
+            </label>
+            <button class="modal-settings__send" type="button">-></button>
+          </form>
+        </div>
+        <button class="modal__close">x</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
