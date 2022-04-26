@@ -1,0 +1,35 @@
+.chat {
+
+}
+
+.message {
+  display: flex;
+  justify-content: flex-end;
+
+  &__wrapper {
+    width: 50%;
+    margin: 5px;
+    padding: 10px;
+    background-color: $white-grey;
+  }
+
+  &__body {
+
+  }
+
+  &__sender {
+
+  }
+
+  &__text {
+
+  }
+
+  &__time {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+  }
+}

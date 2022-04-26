@@ -12,3 +12,7 @@ function closeModal() {
   UI_ELEMENTS.MODAL.classList.remove('modal-active')
 }
 
+function showTime() {
+  UI_ELEMENTS.TIME.textContent = new Date()
+}
+showTime()

@@ -518,6 +518,24 @@ th {
   border: 1px solid #000000;
 }
 
+.message {
+  display: flex;
+  justify-content: flex-end;
+}
+.message__wrapper {
+  width: 50%;
+  margin: 5px;
+  padding: 10px;
+  background-color: #E5E5E5;
+}
+.message__time {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333333;
+}
+
 body {
   background-color: #FFFFFF;
 }

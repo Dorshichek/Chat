@@ -6,5 +6,6 @@ const UI_ELEMENTS = {
   SETTINGS: document.querySelector('.header__settings'),
   BUTTON_CLOSE: document.querySelector('.modal__close'),
   MODAL: document.querySelector('.modal'),
-
+  TIME: document.querySelector('.message__time'),
+  MESSAGE: document.querySelector('.message__text'),
 }

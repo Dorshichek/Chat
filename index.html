@@ -17,8 +17,17 @@
     </div>
   </header>
   <main>
-    <section class="chat">
-    </section>
+    <div class="chat">
+      <div class="message">
+        <div class="message__wrapper">
+          <div class="message__body">
+            <span class="message__sender">Я:</span>
+            <span class="message__text"></span>
+          </div>
+          <span class="message__time"></span>
+        </div>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <form action="submit" class="footer__form form">
@@ -36,7 +45,7 @@
           <span class="modal-settings__title">Имя в чате</span>
           <form class="modal-settings__form" action="submit">
             <label>
-              <input class="modal-settings__input" type="text"  placeholder="Ваше имя">
+              <input class="modal-settings__input" type="text" placeholder="Ваше имя">
             </label>
             <button class="modal-settings__send" type="button">-></button>
           </form>
