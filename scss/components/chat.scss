@@ -1,5 +1,15 @@
 .chat {
+display: flex;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-self: flex-end;
+  }
 
+  &__my-message {
+    justify-content: flex-end;
+  }
 }
 
 .message {
@@ -7,10 +17,12 @@
   justify-content: flex-end;
 
   &__wrapper {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
     margin: 5px;
     padding: 10px;
     background-color: $white-grey;
+    gap: 5px;
   }
 
   &__body {
@@ -26,6 +38,7 @@
   }
 
   &__time {
+    align-self: flex-end;
     font-style: italic;
     font-weight: 300;
     font-size: 14px;

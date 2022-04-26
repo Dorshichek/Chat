@@ -18,14 +18,7 @@
   </header>
   <main>
     <div class="chat">
-      <div class="message">
-        <div class="message__wrapper">
-          <div class="message__body">
-            <span class="message__sender">Я:</span>
-            <span class="message__text"></span>
-          </div>
-          <span class="message__time"></span>
-        </div>
+      <div class="chat__wrapper">
       </div>
     </div>
   </main>
@@ -34,7 +27,7 @@
       <label>
         <input class="form__message" type="text" placeholder="сообщение..">
       </label>
-      <button class="form__send" type="button">-></button>
+      <button class="form__send-message" type="button">-></button>
     </form>
   </footer>
   <div class="modal">
@@ -55,6 +48,12 @@
     </div>
   </div>
 </div>
+<template class="message">
+  <div class="message__wrapper">
+    <span class="message__text"></span>
+    <span class="message__time"></span>
+  </div>
+</template>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

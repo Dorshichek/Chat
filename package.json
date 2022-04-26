@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Dorshichek/Chat/issues"
   },
-  "homepage": "https://github.com/Dorshichek/Chat#readme"
+  "homepage": "https://github.com/Dorshichek/Chat#readme",
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.28.0"
+  }
 }
