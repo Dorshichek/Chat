@@ -13,6 +13,8 @@
   <header class="header">
     <div class="header__buttons">
       <button class="header__settings" type="button">Настройки</button>
+      <button class="header__authorization" type="button">Тест</button>
+      <button class="header__code" type="button">Тест2</button>
       <button class="header__exit" type="button">Выйти</button>
     </div>
   </header>
@@ -23,11 +25,11 @@
     </div>
   </main>
   <footer class="footer">
-    <form action="submit" class="footer__form form">
+    <form action="" class="footer__form form">
       <label>
         <input class="form__message" type="text" placeholder="сообщение..">
       </label>
-      <button class="form__send-message" type="button">-></button>
+      <button class="form__send-message" type="submit">-></button>
     </form>
   </footer>
   <div class="modal">
@@ -40,19 +42,43 @@
             <label>
               <input class="modal-settings__input" type="text" placeholder="Ваше имя">
             </label>
-            <button class="modal-settings__send" type="button">-></button>
+            <button class="modal-settings__send" type="submit">-></button>
           </form>
         </div>
-        <button class="modal__close">x</button>
+        <button class="modal__close" type="button">x</button>
+      </div>
+      <div class="modal__body modal-authorization">
+        <span class="modal-authorization__text">Авторизация</span>
+        <div class="modal-authorization__body">
+          <span class="modal-authorization__title">Почта:</span>
+          <form class="modal-authorization__form" action="">
+            <label>
+              <input class="modal-authorization__input" type="text" placeholder="Введите почту">
+            </label>
+            <button class="modal-authorization__send" type="submit">Получить код</button>
+          </form>
+        </div>
+        <button class="modal__close" type="button">x</button>
+      </div>
+      <div class="modal__body modal-code">
+        <span class="modal-code__text">Подтверждение</span>
+        <div class="modal-code__body">
+          <span class="modal-code__title">Код:</span>
+          <form class="modal-code__form" action="">
+            <label>
+              <input class="modal-code__input" type="text" placeholder="Введите почту">
+            </label>
+            <button class="modal-code__send" type="submit">Войти</button>
+          </form>
+        </div>
+        <button class="modal__close" type="button">x</button>
       </div>
     </div>
   </div>
 </div>
 <template class="message">
-  <div class="message__wrapper">
-    <span class="message__text"></span>
-    <span class="message__time"></span>
-  </div>
+  <span class="message__text"></span>
+  <span class="message__time"></span>
 </template>
 <script type="module" src="js/main.js"></script>
 </body>

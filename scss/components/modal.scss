@@ -10,10 +10,10 @@
     bottom: 0;
     transition-duration: 0.5s;
     background-color: $background;
-
   }
 
   &__body {
+    display: none;
     position: absolute;
     top: 106px;
     width: 273px;
@@ -34,6 +34,30 @@
     border: none;
   }
 }
+
+.modal-settings, .modal-code, .modal-authorization {
+  
+  &__body {
+    padding-top: 70px;
+  }
+
+  &__form {
+    padding-top: 8px;
+  }
+
+  &__input {
+    padding: 7px;
+    width: 207px;
+  }
+
+  &__send {
+    margin-top: 7px;
+    padding: 7px;
+    background-color: $white;
+    border: 1px solid #000000;
+  }
+}
+
 
 .modal-active {
   display: block;

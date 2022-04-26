@@ -3,16 +3,16 @@
   font-weight: 300;
   font-display: swap;
   font-style: normal;
-  src: url("fonts/Roboto-LightItalic.woff2") format("woff2");
-  src: url("fonts/Roboto-LightItalic.woff") format("woff");
+  src: url("/fonts/Roboto-LightItalic.woff2") format("woff2");
+  src: url("/fonts/Roboto-LightItalic.woff") format("woff");
 }
 @font-face {
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-display: swap;
   font-style: normal;
-  src: url("fonts/Roboto-Regular.woff2") format("woff2");
-  src: url("fonts/Roboto-Regular.woff") format("woff");
+  src: url("/fonts/Roboto-Regular.woff2") format("woff2");
+  src: url("/fonts/Roboto-Regular.woff") format("woff");
 }
 *,
 *::before,
@@ -476,6 +476,7 @@ th {
   background-color: #535353;
 }
 .modal__body {
+  display: none;
   position: absolute;
   top: 106px;
   width: 273px;
@@ -495,45 +496,37 @@ th {
   border: none;
 }
 
-.modal-active {
-  display: block;
+.modal-settings__body, .modal-code__body, .modal-authorization__body {
+  padding-top: 70px;
 }
-
-.modal-settings {
-  position: relative;
-}
-.modal-settings__body {
-  padding-top: 16px;
-}
-.modal-settings__form {
+.modal-settings__form, .modal-code__form, .modal-authorization__form {
   padding-top: 8px;
 }
-.modal-settings__input {
+.modal-settings__input, .modal-code__input, .modal-authorization__input {
   padding: 7px;
   width: 207px;
 }
-.modal-settings__send {
+.modal-settings__send, .modal-code__send, .modal-authorization__send {
+  margin-top: 7px;
   padding: 7px;
   background-color: #FFFFFF;
   border: 1px solid #000000;
 }
 
+.modal-active {
+  display: block;
+}
+
 .chat {
+  width: 304px;
+  height: 430px;
+  border: 1px solid #000000;
   display: flex;
+  flex-flow: column-reverse nowrap;
 }
 .chat__wrapper {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  align-self: flex-end;
-}
-.chat__my-message {
-  justify-content: flex-end;
-}
-
-.message {
-  display: flex;
-  justify-content: flex-end;
 }
 .message__wrapper {
   display: flex;
@@ -542,6 +535,8 @@ th {
   padding: 10px;
   background-color: #E5E5E5;
   gap: 5px;
+  min-width: 120px;
+  align-self: flex-end;
 }
 .message__time {
   align-self: flex-end;
@@ -576,12 +571,6 @@ body {
   border: 1px solid #000000;
   background-color: #FFFFFF;
 }
-.chat {
-  width: 304px;
-  height: 430px;
-  border: 1px solid #000000;
-}
-
 .footer {
   padding-top: 8px;
 }
