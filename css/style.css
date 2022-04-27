@@ -571,6 +571,7 @@ body {
   border: 1px solid #000000;
   background-color: #FFFFFF;
 }
+
 .footer {
   padding-top: 8px;
 }
@@ -587,6 +588,42 @@ body {
   padding: 7px;
   background-color: #FFFFFF;
   border: 1px solid #000000;
+}
+
+.error {
+  position: absolute;
+  height: 40px;
+  width: 190px;
+  background-color: red;
+  color: #FFFFFF;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 14px;
+  z-index: 100;
+  top: 20px;
+  left: 20%;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success {
+  position: absolute;
+  height: 40px;
+  width: 190px;
+  background-color: #49d949;
+  color: #FFFFFF;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 14px;
+  z-index: 100;
+  top: 20px;
+  left: 20%;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */
