@@ -10,6 +10,7 @@ const UI_ELEMENTS = {
     SETTINGS: document.querySelector('.header__settings'),
     CONFIRM: document.querySelector('.header__confirm'),
     AUTHORIZATION: document.querySelector('.header__authorization'),
+    SEND_NAME: document.querySelector('.modal-settings__send'),
   },
 
   CHAT: document.querySelector('.chat__wrapper'),
@@ -19,6 +20,7 @@ const UI_ELEMENTS = {
     MESSAGE: document.querySelector('.form__message'),
     AUTHORIZATION: document.querySelector('.modal-authorization__input'),
     CONFIRM: document.querySelector('.modal-code__input'),
+    SETTINGS: document.querySelector('.modal-settings__input'),
   },
 
   MODALS: {

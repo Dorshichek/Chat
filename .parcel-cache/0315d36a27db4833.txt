@@ -1,9 +1,8 @@
 12003
-44/home/dorshichek/Projects/Chat/js/confirm.js1651098423656092633 0
 44/home/dorshichek/Projects/Chat/js/message.js1651092861035684224 0
-50/home/dorshichek/Projects/Chat/js/authorization.js1651097883432328465 0
-41/home/dorshichek/Projects/Chat/js/view.js1651097998341121976 0
-33/home/dorshichek/Projects/Chat/js1651098423660092662 1
+50/home/dorshichek/Projects/Chat/js/authorization.js1651180696648419164 0
+41/home/dorshichek/Projects/Chat/js/view.js1651179590478945389 0
+33/home/dorshichek/Projects/Chat/js1651180696664422005 1
 43/home/dorshichek/Projects/Chat/package.json1651013017451369505 0
 60/home/dorshichek/Projects/Chat/fonts/Roboto-LightItalic.woff1650839979441000000 0
 57/home/dorshichek/Projects/Chat/fonts/Roboto-Regular.woff21650839999517000000 0
@@ -3409,7 +3408,7 @@
 81/home/dorshichek/Projects/Chat/node_modules/date-fns/subBusinessDays/package.json1651003052258708874 0
 86/home/dorshichek/Projects/Chat/node_modules/@parcel/core/test/fixtures/invalid-targets1651003051510669567 1
 70/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/setMinutes1651003052186705089 1
-68/home/dorshichek/Projects/Chat/dist/Roboto-LightItalic.3db4131e.woff1651097883532329153 0
+68/home/dorshichek/Projects/Chat/dist/Roboto-LightItalic.3db4131e.woff1651179477964872768 0
 75/home/dorshichek/Projects/Chat/node_modules/date-fns/setISODay/package.json1651003052246708243 0
 128/home/dorshichek/Projects/Chat/node_modules/@parcel/node-resolver-core/test/fixture/node_modules/package-alias-glob/package.json1651003051582673348 0
 77/home/dorshichek/Projects/Chat/node_modules/@parcel/utils/src/PromiseQueue.js1651003052122701725 0
@@ -3572,7 +3571,7 @@
 81/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/flexbox.js1651003052142702777 0
 97/home/dorshichek/Projects/Chat/node_modules/lmdb/prebuilds/darwin-arm64/electron.abi99.glibc.node1651003052278709925 0
 77/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/da/index.d.ts1651003052198705720 0
-36/home/dorshichek/Projects/Chat/.idea1651098436864185465 1
+36/home/dorshichek/Projects/Chat/.idea1651180489599710978 1
 115/home/dorshichek/Projects/Chat/node_modules/@parcel/node-resolver-core/test/fixture/node_modules/package-alias-glob1651003051582673348 1
 71/home/dorshichek/Projects/Chat/node_modules/lmdb/src/ordered-binary.cpp1651003052334712869 0
 75/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/regions/QA.js1651003052154703408 0
@@ -3804,7 +3803,7 @@
 79/home/dorshichek/Projects/Chat/node_modules/@parcel/runtime-js/lib/helpers/node1651003051606674609 1
 75/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/toDate/package.json1651003052226707192 0
 105/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/differenceInCalendarISOWeekYears/package.json1651003052174704458 0
-65/home/dorshichek/Projects/Chat/dist/Roboto-Regular.b9356bf3.woff21651097883544329235 0
+65/home/dorshichek/Projects/Chat/dist/Roboto-Regular.b9356bf3.woff21651179477972871701 0
 75/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/regions/BE.js1651003052146702987 0
 73/home/dorshichek/Projects/Chat/node_modules/date-fns/differenceInQuarters1651003052170704249 1
 62/home/dorshichek/Projects/Chat/node_modules/yaml/dist/types.js1651003052370714762 0
@@ -4406,13 +4405,13 @@
 76/home/dorshichek/Projects/Chat/node_modules/date-fns/closestIndexTo/index.js1651003052170704249 0
 68/home/dorshichek/Projects/Chat/node_modules/htmlnano/lib/htmlnano.js1651003052266709295 0
 72/home/dorshichek/Projects/Chat/node_modules/@parcel/transformer-svg/test1651003052114701306 1
-50/home/dorshichek/Projects/Chat/.idea/workspace.xml1651098436860185436 0
+50/home/dorshichek/Projects/Chat/.idea/workspace.xml1651180489599710978 0
 82/home/dorshichek/Projects/Chat/node_modules/svgo/plugins/convertEllipseToCircle.js1651003052354713921 0
 78/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/nextWednesday/index.js1651003052226707192 0
 79/home/dorshichek/Projects/Chat/node_modules/date-fns/addMilliseconds/index.d.ts1651003052170704249 0
 80/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/ja-Hira/index.js1651003052198705720 0
 71/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/is/_lib1651003052198705720 1
-53/home/dorshichek/Projects/Chat/dist/index.59310d25.js1651097998453122752 0
+53/home/dorshichek/Projects/Chat/dist/index.59310d25.js1651179892194207711 0
 82/home/dorshichek/Projects/Chat/node_modules/date-fns/lastDayOfDecade/index.js.flow1651003052230707402 0
 103/home/dorshichek/Projects/Chat/node_modules/lmdb/dependencies/lmdb-data-v1/libraries/liblmdb/mdb_copy.11651003052270709504 0
 79/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/const.js1651003052138702566 0
@@ -4449,7 +4448,7 @@
 94/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/ar-SA/_lib/formatDistance/index.js1651003052230707402 0
 65/home/dorshichek/Projects/Chat/node_modules/date-fns/add/index.js1651003052162703828 0
 87/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/startOfISOWeek/package.json1651003052186705089 0
-41/home/dorshichek/Projects/Chat/js/init.js1651092557509559030 0
+41/home/dorshichek/Projects/Chat/js/init.js1651179477580923973 0
 90/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/en-AU/_lib/formatLong/index.js1651003052230707402 0
 89/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/input-inputmode.js1651003052142702777 0
 77/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/ca/_lib/match1651003052198705720 1
@@ -4509,7 +4508,7 @@
 63/home/dorshichek/Projects/Chat/node_modules/type-fest/base.d.ts1651003052362714341 0
 82/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/ca/_lib/formatLong1651003052198705720 1
 85/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/differenceInCalendarISOWeeks1651003052170704249 1
-69/home/dorshichek/Projects/Chat/dist/Roboto-LightItalic.ca562ec2.woff21651097883528329125 0
+69/home/dorshichek/Projects/Chat/dist/Roboto-LightItalic.ca562ec2.woff21651179477928877568 0
 74/home/dorshichek/Projects/Chat/node_modules/cosmiconfig/dist/readFile.d.ts1651003052154703408 0
 76/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/bg/index.js.flow1651003052230707402 0
 78/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/apng.js1651003052138702566 0
@@ -4614,7 +4613,7 @@
 80/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/gu/_lib/localize1651003052198705720 1
 58/home/dorshichek/Projects/Chat/node_modules/yaml/scalar.js1651003052370714762 0
 100/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/eachMinuteOfIntervalWithOptions/index.js1651003052178704668 0
-53/home/dorshichek/Projects/Chat/dist/index.fbb3188c.js1651097883532329153 0
+53/home/dorshichek/Projects/Chat/dist/index.fbb3188c.js1651179477916879168 0
 80/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/endOfSecond/index.js1651003052178704668 0
 63/home/dorshichek/Projects/Chat/node_modules/lmdb/dict/dict2.txt1651003052274709715 0
 74/home/dorshichek/Projects/Chat/node_modules/electron-to-chromium/README.md1651003052262709084 0
@@ -4697,7 +4696,7 @@
 59/home/dorshichek/Projects/Chat/node_modules/posthtml-parser1651003052346713500 1
 63/home/dorshichek/Projects/Chat/node_modules/msgpackr/index.d.ts1651003052338713079 0
 77/home/dorshichek/Projects/Chat/node_modules/date-fns/startOfWeek/package.json1651003052258708874 0
-57/home/dorshichek/Projects/Chat/dist/index.59310d25.js.map1651097998453122752 0
+57/home/dorshichek/Projects/Chat/dist/index.59310d25.js.map1651179892194207711 0
 90/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/user-select-none.js1651003052146702987 0
 70/home/dorshichek/Projects/Chat/node_modules/msgpackr-extract-linux-x641651003052338713079 1
 93/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/css-filter-function.js1651003052138702566 0
@@ -4921,7 +4920,7 @@
 61/home/dorshichek/Projects/Chat/node_modules/process/README.md1651013016315364807 0
 81/home/dorshichek/Projects/Chat/node_modules/date-fns/lastDayOfDecade/package.json1651003052230707402 0
 65/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/setISODay1651003052226707192 1
-64/home/dorshichek/Projects/Chat/dist/Roboto-Regular.4685df76.woff1651097883528329125 0
+64/home/dorshichek/Projects/Chat/dist/Roboto-Regular.4685df76.woff1651179477928877568 0
 83/home/dorshichek/Projects/Chat/node_modules/svgo/plugins/cleanupEnableBackground.js1651003052354713921 0
 80/home/dorshichek/Projects/Chat/node_modules/utility-types/dist/mapped-types.d.ts1651003052370714762 0
 69/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/min/index.js1651003052206706141 0
@@ -4968,7 +4967,7 @@
 87/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/web-animation.js1651003052146702987 0
 95/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/ja/_lib/formatDistance/index.js1651003052198705720 0
 88/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/css-snappoints.js1651003052142702777 0
-35/home/dorshichek/Projects/Chat/dist1651097998457122780 1
+35/home/dorshichek/Projects/Chat/dist1651179892198208149 1
 86/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/border-image.js1651003052138702566 0
 70/home/dorshichek/Projects/Chat/node_modules/date-fns/min/index.js.flow1651003052242708033 0
 84/home/dorshichek/Projects/Chat/node_modules/css-tree/lib/syntax/node/MediaFeature.js1651003052158703618 0
@@ -5047,6 +5046,7 @@
 89/home/dorshichek/Projects/Chat/node_modules/@parcel/transformer-css/src/CSSTransformer.js1651003051622675451 0
 104/home/dorshichek/Projects/Chat/node_modules/htmlnano/docs/versioned_sidebars/version-2.0.0-sidebars.json1651003052266709295 0
 74/home/dorshichek/Projects/Chat/node_modules/@parcel/core/src/Validation.js1651003051502669145 0
+42/home/dorshichek/Projects/Chat/js/token.js1651179892046191472 0
 71/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/subISOWeekYears1651003052226707192 1
 78/home/dorshichek/Projects/Chat/node_modules/electron-to-chromium/versions.json1651003052262709084 0
 79/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/isSameSecond/index.d.ts1651003052218706771 0
@@ -5522,7 +5522,7 @@
 79/home/dorshichek/Projects/Chat/node_modules/type-fest/source/tsconfig-json.d.ts1651003052370714762 0
 86/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/th/_lib/formatRelative1651003052206706141 1
 66/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/subMinutes1651003052226707192 1
-54/home/dorshichek/Projects/Chat/dist/index.b2625c6b.css1651097883544329235 0
+54/home/dorshichek/Projects/Chat/dist/index.b2625c6b.css1651179477976871167 0
 87/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/border-radius.js1651003052138702566 0
 62/home/dorshichek/Projects/Chat/node_modules/msgpackr/README.md1651003052338713079 0
 76/home/dorshichek/Projects/Chat/node_modules/date-fns/formatISO/index.js.flow1651003052214706562 0
@@ -6245,7 +6245,7 @@
 76/home/dorshichek/Projects/Chat/node_modules/css-tree/lib/syntax/node/Rule.js1651003052158703618 0
 73/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/fr/index.d.ts1651003052238707823 0
 71/home/dorshichek/Projects/Chat/node_modules/@parcel/transformer-postcss1651003052110701095 1
-46/home/dorshichek/Projects/Chat/dist/index.html1651097883532329153 0
+46/home/dorshichek/Projects/Chat/dist/index.html1651179477972871701 0
 58/home/dorshichek/Projects/Chat/node_modules/domelementtype1651003052262709084 1
 71/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/bs/index.js1651003052230707402 0
 74/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/en-AU/_lib1651003052198705720 1
@@ -6408,7 +6408,7 @@
 85/home/dorshichek/Projects/Chat/node_modules/@babel/highlight/node_modules/ansi-styles1651003051482668095 1
 85/home/dorshichek/Projects/Chat/node_modules/caniuse-lite/data/features/videotracks.js1651003052146702987 0
 91/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/nl/_lib/formatDistance/index.js1651003052238707823 0
-58/home/dorshichek/Projects/Chat/dist/index.b2625c6b.css.map1651097883544329235 0
+58/home/dorshichek/Projects/Chat/dist/index.b2625c6b.css.map1651179477976871167 0
 87/home/dorshichek/Projects/Chat/node_modules/terser/node_modules/source-map/package.json1651003052362714341 0
 75/home/dorshichek/Projects/Chat/node_modules/date-fns/locale/ja/package.json1651003052238707823 0
 82/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/fp/endOfYear/package.json1651003052178704668 0
@@ -7816,7 +7816,7 @@
 73/home/dorshichek/Projects/Chat/node_modules/date-fns/compareDesc/index.js1651003052170704249 0
 98/home/dorshichek/Projects/Chat/node_modules/date-fns/esm/locale/ar-EG/_lib/formatRelative/index.js1651003052194705510 0
 60/home/dorshichek/Projects/Chat/node_modules/date-fns/getYear1651003052226707192 1
-57/home/dorshichek/Projects/Chat/dist/index.fbb3188c.js.map1651097883532329153 0
+57/home/dorshichek/Projects/Chat/dist/index.fbb3188c.js.map1651179477920878635 0
 64/home/dorshichek/Projects/Chat/node_modules/date-fns/startOfWeek1651003052258708874 1
 82/home/dorshichek/Projects/Chat/node_modules/date-fns/fp/formatISODuration/index.js1651003052218706771 0
 73/home/dorshichek/Projects/Chat/node_modules/date-fns/startOfWeek/index.js1651003052258708874 0

@@ -532,7 +532,7 @@ parcelHelpers.export(exports, "init", ()=>init
 );
 var _view = require("./view");
 var _message = require("./message");
-var _authorization = require("./authorization");
+var _token = require("./token");
 function init() {
     _view.UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function() {
         _view.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
@@ -554,12 +554,12 @@ function init() {
             _view.UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active');
         });
     });
-    _view.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _authorization.getCode);
+    _view.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _token.getCode);
     _view.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
 }
 init();
 
-},{"./view":"2GA9o","./message":"lGCpb","./authorization":"iH89i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2GA9o":[function(require,module,exports) {
+},{"./view":"2GA9o","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./token":"gTNPd"}],"2GA9o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -571,14 +571,16 @@ const UI_ELEMENTS = {
         GET_CODE: document.querySelector('.modal-authorization__send'),
         SETTINGS: document.querySelector('.header__settings'),
         CONFIRM: document.querySelector('.header__confirm'),
-        AUTHORIZATION: document.querySelector('.header__authorization')
+        AUTHORIZATION: document.querySelector('.header__authorization'),
+        SEND_NAME: document.querySelector('.modal-settings__send')
     },
     CHAT: document.querySelector('.chat__wrapper'),
     CONTAINER: document.querySelector('.chat__container'),
     INPUTS: {
         MESSAGE: document.querySelector('.form__message'),
         AUTHORIZATION: document.querySelector('.modal-authorization__input'),
-        CONFIRM: document.querySelector('.modal-code__input')
+        CONFIRM: document.querySelector('.modal-code__input'),
+        SETTINGS: document.querySelector('.modal-settings__input')
     },
     MODALS: {
         WRAPPER: document.querySelector('.modal'),
@@ -3657,7 +3659,7 @@ var quartersInYear = 4;
 var secondsInHour = 3600;
 var secondsInMinute = 60;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iH89i":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gTNPd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getCode", ()=>getCode
@@ -3670,7 +3672,8 @@ async function getCode() {
     event.preventDefault();
     try {
         const email = _view.UI_ELEMENTS.INPUTS.AUTHORIZATION.value;
-        const response = await _axiosDefault.default.post('https://mighty-cove-31255.herokuapp.com/api/user', {
+        const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
+        const response = await _axiosDefault.default.post(URL, {
             email: String(email)
         });
         if (response.data.success) _showserverresponse.showSuccess();
@@ -3679,7 +3682,7 @@ async function getCode() {
     }
 }
 
-},{"./view":"2GA9o","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./showserverresponse":"1XFq7"}],"jo6P5":[function(require,module,exports) {
+},{"./view":"2GA9o","axios":"jo6P5","./showserverresponse":"1XFq7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {

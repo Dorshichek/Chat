@@ -1,6 +1,6 @@
 import {UI_ELEMENTS} from "./view";
 import {createMessage} from "./message";
-import {getCode} from "./authorization";
+import {getCode} from "./token";
 
 export function init() {
   UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function () {
