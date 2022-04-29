@@ -533,6 +533,7 @@ parcelHelpers.export(exports, "init", ()=>init
 var _view = require("./view");
 var _message = require("./message");
 var _token = require("./token");
+var _authorization = require("./authorization");
 function init() {
     _view.UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function() {
         _view.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
@@ -556,10 +557,11 @@ function init() {
     });
     _view.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _token.getCode);
     _view.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
+    _view.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _authorization.sendName);
 }
 init();
 
-},{"./view":"2GA9o","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./token":"gTNPd"}],"2GA9o":[function(require,module,exports) {
+},{"./view":"2GA9o","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./token":"gTNPd","./authorization":"iH89i"}],"2GA9o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -7060,6 +7062,157 @@ function showSuccess() {
     }, 3000);
 }
 
-},{"./view":"2GA9o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
+},{"./view":"2GA9o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iH89i":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "sendName", ()=>sendName
+);
+var _view = require("./view");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _cookie = require("./cookie");
+async function sendName() {
+    try {
+        const name = _view.UI_ELEMENTS.INPUTS.SETTINGS.value;
+        _cookie.AUTHORIZATION_COOKIE.setCookie();
+        const TOKEN = _cookie.AUTHORIZATION_COOKIE.getCookie('token');
+        const response = await _axiosDefault.default.patch(URL, {
+            Authorization: `Bearer ${TOKEN}`,
+            name: name
+        });
+        if (response.data.success) console.log('Гуд');
+    } catch (e) {
+        console.log('Не гуд');
+    }
+}
+
+},{"./view":"2GA9o","axios":"jo6P5","./cookie":"iflT4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iflT4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Cookie", ()=>Cookie
+);
+parcelHelpers.export(exports, "AUTHORIZATION_COOKIE", ()=>AUTHORIZATION_COOKIE
+);
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+var _constants = require("./constants");
+class Cookie {
+    constructor(key, value){
+        this.key = key;
+        this.value = value;
+    }
+    setCookie(key, value) {
+        _jsCookieDefault.default.set(key, value);
+    }
+    getCookie(key) {
+        _jsCookieDefault.default.get(key);
+    }
+    deleteCookie(key) {
+        _jsCookieDefault.default.remove(key);
+    }
+}
+const AUTHORIZATION_COOKIE = new Cookie('token', _constants.TOKEN);
+
+},{"js-cookie":"c8bBu","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+(function(global, factory) {
+    module.exports = factory();
+})(this, function() {
+    'use strict';
+    /* eslint-disable no-var */ function assign(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)target[key] = source[key];
+        }
+        return target;
+    }
+    /* eslint-enable no-var */ /* eslint-disable no-var */ var defaultConverter = {
+        read: function(value) {
+            if (value[0] === '"') value = value.slice(1, -1);
+            return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+        },
+        write: function(value) {
+            return encodeURIComponent(value).replace(/%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g, decodeURIComponent);
+        }
+    };
+    /* eslint-enable no-var */ /* eslint-disable no-var */ function init(converter1, defaultAttributes) {
+        function set(key, value, attributes) {
+            if (typeof document === 'undefined') return;
+            attributes = assign({}, defaultAttributes, attributes);
+            if (typeof attributes.expires === 'number') attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+            if (attributes.expires) attributes.expires = attributes.expires.toUTCString();
+            key = encodeURIComponent(key).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+            var stringifiedAttributes = '';
+            for(var attributeName in attributes){
+                if (!attributes[attributeName]) continue;
+                stringifiedAttributes += '; ' + attributeName;
+                if (attributes[attributeName] === true) continue;
+                // Considers RFC 6265 section 5.2:
+                // ...
+                // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+                //     character:
+                // Consume the characters of the unparsed-attributes up to,
+                // not including, the first %x3B (";") character.
+                // ...
+                stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+            }
+            return document.cookie = key + '=' + converter1.write(value, key) + stringifiedAttributes;
+        }
+        function get(key) {
+            if (typeof document === 'undefined' || arguments.length && !key) return;
+            // To prevent the for loop in the first place assign an empty array
+            // in case there are no cookies at all.
+            var cookies = document.cookie ? document.cookie.split('; ') : [];
+            var jar = {};
+            for(var i = 0; i < cookies.length; i++){
+                var parts = cookies[i].split('=');
+                var value = parts.slice(1).join('=');
+                try {
+                    var foundKey = decodeURIComponent(parts[0]);
+                    jar[foundKey] = converter1.read(value, foundKey);
+                    if (key === foundKey) break;
+                } catch (e) {}
+            }
+            return key ? jar[key] : jar;
+        }
+        return Object.create({
+            set: set,
+            get: get,
+            remove: function(key, attributes) {
+                set(key, '', assign({}, attributes, {
+                    expires: -1
+                }));
+            },
+            withAttributes: function(attributes) {
+                return init(this.converter, assign({}, this.attributes, attributes));
+            },
+            withConverter: function(converter) {
+                return init(assign({}, this.converter, converter), this.attributes);
+            }
+        }, {
+            attributes: {
+                value: Object.freeze(defaultAttributes)
+            },
+            converter: {
+                value: Object.freeze(converter1)
+            }
+        });
+    }
+    var api = init(defaultConverter, {
+        path: '/'
+    });
+    /* eslint-enable no-var */ return api;
+});
+
+},{}],"1j8D1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TOKEN", ()=>TOKEN
+);
+parcelHelpers.export(exports, "URL", ()=>URL
+);
+let TOKEN;
+let URL;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
 
 //# sourceMappingURL=index.59310d25.js.map

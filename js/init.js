@@ -1,6 +1,7 @@
 import {UI_ELEMENTS} from "./view";
 import {createMessage} from "./message";
 import {getCode} from "./token";
+import {sendName} from "./authorization";
 
 export function init() {
   UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function () {
@@ -29,6 +30,8 @@ export function init() {
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 
   UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', createMessage)
+
+  UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', sendName)
 }
 
 init()
