@@ -1,4 +1,4 @@
-import {UI_ELEMENTS} from "./uiElements";
+import {UI_ELEMENTS} from "./uielements";
 
 export function responseError() {
   UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `

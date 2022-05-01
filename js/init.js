@@ -1,7 +1,5 @@
-import {UI_ELEMENTS} from "./uiElements";
-import {createMessage, myMessage} from "./message";
-import {getCode, changeName, authorization, sendMessage} from "./requests";
-import {USER} from "./constants";
+import {UI_ELEMENTS} from "./uielements";
+import {getCode, changeName, authorization, sendMessage} from "./api";
 
 document.addEventListener('DOMContentLoaded', init)
 

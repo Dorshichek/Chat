@@ -1,7 +1,6 @@
-import {UI_ELEMENTS} from "./uiElements";
+import {UI_ELEMENTS} from "./uielements";
 import {format} from "date-fns";
 import {USER} from "./constants";
-import {WEBSOCKET} from "./requests";
 import {clearInput} from "./main";
 
 export {
@@ -19,7 +18,8 @@ function createMessage(id, name, text, time) {
     element.querySelector('.message__text').textContent = USER.name + ': ' + message
     element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
     UI_ELEMENTS.CHAT.append(element)
-    clearInput(UI_ELEMENTS.INPUTS.MESSAGE)
+    // clearInput(UI_ELEMENTS.INPUTS.MESSAGE.textContent)
+    UI_ELEMENTS.INPUTS.MESSAGE.value = ''
   } else {
     const element = document.createElement('div')
     element.className = 'message__wrapper other-message'

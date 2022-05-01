@@ -530,10 +530,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "clearInput", ()=>clearInput
 );
+var _uielements = require("./uielements");
 function clearInput(input) {
-    input.value = '';
+    input = '';
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["huMbS","bDbGG"], "bDbGG", "parcelRequire25d8")
+},{"./uielements":"eAreM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["huMbS","bDbGG"], "bDbGG", "parcelRequire25d8")
 
 //# sourceMappingURL=index.fbb3188c.js.map

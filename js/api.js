@@ -1,11 +1,11 @@
-import {UI_ELEMENTS} from "./uiElements";
+import {UI_ELEMENTS} from "./uielements";
 import axios from "axios";
 import {USER, URL, URL_USER_AUTHORIZATION, URL_MESSAGES} from "./constants";
 import {AUTHORIZATION_COOKIE} from "./cookie";
 import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
 import {createMessage} from "./message";
-import {clearInput} from "./main";
+import {clearInput, closeModal, showModal} from "./main";
 
 export {
   changeName, authorization, getCode
@@ -23,6 +23,8 @@ async function getCode() {
     if (response.status === 200) {
       clearInput(UI_ELEMENTS.INPUTS.MAIL)
       responseSuccess()
+      closeModal()
+      showModal(UI_ELEMENTS.MODALS.AUTHORIZATION)
     }
   } catch (error) {
     responseError()
@@ -46,6 +48,7 @@ async function authorization() {
       USER.id = response.data._id
       await showMessageStory()
       responseSuccess()
+      closeModal()
     }
   } catch (error) {
     responseError()
@@ -69,6 +72,7 @@ async function changeName() {
       clearInput(UI_ELEMENTS.INPUTS.NAME)
       USER.name = name
       responseSuccess()
+      closeModal()
     }
   } catch
       (error) {
@@ -87,6 +91,7 @@ async function showMessageStory() {
     if (response.status === 200) {
       const messages = response.data.messages
       getLastMessages(messages)
+      closeModal()
     }
   } catch (error) {
     responseError()
