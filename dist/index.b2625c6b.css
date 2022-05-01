@@ -290,9 +290,11 @@ td, th {
 .chat {
   width: 304px;
   height: 430px;
+  -ms-overflow-style: none;
   border: 1px solid #000;
   flex-flow: column-reverse;
   display: flex;
+  overflow: auto;
 }
 
 .chat__wrapper {
@@ -304,7 +306,6 @@ td, th {
   min-width: 120px;
   background-color: #e5e5e5;
   flex-direction: column;
-  align-self: flex-end;
   gap: 5px;
   margin: 5px;
   padding: 10px;
@@ -318,6 +319,14 @@ td, th {
   font-style: italic;
   font-weight: 300;
   line-height: 16px;
+}
+
+.my-message {
+  align-self: flex-end;
+}
+
+.other-message {
+  align-self: flex-start;
 }
 
 body {

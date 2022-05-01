@@ -530,38 +530,38 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "init", ()=>init
 );
-var _view = require("./view");
+var _uiElements = require("./uiElements");
 var _message = require("./message");
-var _token = require("./token");
-var _authorization = require("./authorization");
+var _requests = require("./requests");
+document.addEventListener('DOMContentLoaded', init);
 function init() {
-    _view.UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function() {
-        _view.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
-        _view.UI_ELEMENTS.MODALS.SETTINGS.classList.add('modal-active');
+    _uiElements.UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function() {
+        _uiElements.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
+        _uiElements.UI_ELEMENTS.MODALS.SETTINGS.classList.add('modal-active');
     });
-    _view.UI_ELEMENTS.BUTTONS.AUTHORIZATION.addEventListener('click', function() {
-        _view.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
-        _view.UI_ELEMENTS.MODALS.AUTHORIZATION.classList.add('modal-active');
+    _uiElements.UI_ELEMENTS.BUTTONS.AUTHORIZATION.addEventListener('click', function() {
+        _uiElements.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
+        _uiElements.UI_ELEMENTS.MODALS.AUTHORIZATION.classList.add('modal-active');
     });
-    _view.UI_ELEMENTS.BUTTONS.CONFIRM.addEventListener('click', function() {
-        _view.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
-        _view.UI_ELEMENTS.MODALS.CODE.classList.add('modal-active');
+    _uiElements.UI_ELEMENTS.BUTTONS.CONFIRM.addEventListener('click', function() {
+        _uiElements.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
+        _uiElements.UI_ELEMENTS.MODALS.CODE.classList.add('modal-active');
     });
-    _view.UI_ELEMENTS.BUTTONS.CLOSE.forEach((item)=>{
+    _uiElements.UI_ELEMENTS.BUTTONS.CLOSE.forEach((item)=>{
         item.addEventListener('click', function() {
-            _view.UI_ELEMENTS.MODALS.WRAPPER.classList.remove('modal-active');
-            _view.UI_ELEMENTS.MODALS.SETTINGS.classList.remove('modal-active');
-            _view.UI_ELEMENTS.MODALS.AUTHORIZATION.classList.remove('modal-active');
-            _view.UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active');
+            _uiElements.UI_ELEMENTS.MODALS.WRAPPER.classList.remove('modal-active');
+            _uiElements.UI_ELEMENTS.MODALS.SETTINGS.classList.remove('modal-active');
+            _uiElements.UI_ELEMENTS.MODALS.AUTHORIZATION.classList.remove('modal-active');
+            _uiElements.UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active');
         });
     });
-    _view.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _token.getCode);
-    _view.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
-    _view.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _authorization.sendName);
+    _uiElements.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _requests.getCode);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.Message.renderMessage);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _requests.changeName);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
-init();
 
-},{"./view":"2GA9o","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./token":"gTNPd","./authorization":"iH89i"}],"2GA9o":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -574,15 +574,14 @@ const UI_ELEMENTS = {
         SETTINGS: document.querySelector('.header__settings'),
         CONFIRM: document.querySelector('.header__confirm'),
         AUTHORIZATION: document.querySelector('.header__authorization'),
-        SEND_NAME: document.querySelector('.modal-settings__send')
+        SEND_NAME: document.querySelector('.modal-settings__send'),
+        SEND_CODE: document.querySelector('.modal-code__send')
     },
-    CHAT: document.querySelector('.chat__wrapper'),
-    CONTAINER: document.querySelector('.chat__container'),
     INPUTS: {
         MESSAGE: document.querySelector('.form__message'),
-        AUTHORIZATION: document.querySelector('.modal-authorization__input'),
-        CONFIRM: document.querySelector('.modal-code__input'),
-        SETTINGS: document.querySelector('.modal-settings__input')
+        MAIL: document.querySelector('.modal-authorization__input'),
+        CODE: document.querySelector('.modal-code__input'),
+        NAME: document.querySelector('.modal-settings__input')
     },
     MODALS: {
         WRAPPER: document.querySelector('.modal'),
@@ -592,7 +591,9 @@ const UI_ELEMENTS = {
     },
     TEMPLATE: {
         MESSAGE: document.querySelector('.message')
-    }
+    },
+    CHAT: document.querySelector('.chat__wrapper'),
+    CONTAINER: document.querySelector('.chat__container')
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -628,25 +629,58 @@ exports.export = function(dest, destName, get) {
 },{}],"lGCpb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createMessage", ()=>createMessage
+parcelHelpers.export(exports, "Message", ()=>Message
 );
-var _view = require("./view");
+var _uiElements = require("./uiElements");
 var _dateFns = require("date-fns");
-function createMessage() {
-    event.preventDefault();
-    const message = _view.UI_ELEMENTS.INPUTS.MESSAGE.value;
-    if (message) {
-        const element = document.createElement('div');
-        element.className = 'message__wrapper';
-        element.append(_view.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
-        element.querySelector('.message__text').textContent = 'Я : ' + message;
-        element.querySelector('.message__time').textContent = _dateFns.format(new Date(), '	HH:mm');
-        _view.UI_ELEMENTS.CHAT.append(element);
-        _view.UI_ELEMENTS.INPUTS.MESSAGE.value = '';
+var _constants = require("./constants");
+// function createMessage() {
+//   event.preventDefault()
+//   const message = UI_ELEMENTS.INPUTS.MESSAGE.value
+//   if (message) {
+//     const element = document.createElement('div')
+//     element.className = 'message__wrapper my_message'
+//     element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
+//     element.querySelector('.message__text').textContent = USER.name + ': ' + message
+//     element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
+//     UI_ELEMENTS.CHAT.append(element)
+//     UI_ELEMENTS.INPUTS.MESSAGE.value = ''
+//   }
+// }
+class Message {
+    constructor(id = _constants.USER.id, name, text, time){
+        this.id = id;
+        this.name = name;
+        this.text = text;
+        this.time = time;
+    }
+    renderMessage(id, name, text, time) {
+        event.preventDefault();
+        if (id === _constants.USER.id) {
+            const message = _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value;
+            if (message) {
+                const element = document.createElement('div');
+                element.className = 'message__wrapper my-message' //my_message
+                ;
+                element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
+                element.querySelector('.message__text').textContent = name + ': ' + message //USER.name
+                ;
+                element.querySelector('.message__time').textContent = _dateFns.format(new Date(), '	HH:mm');
+                _uiElements.UI_ELEMENTS.CHAT.append(element);
+                _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value = '';
+            }
+        } else {
+            const element = document.createElement('div');
+            element.className = 'message__wrapper other-message';
+            element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
+            element.querySelector('.message__text').textContent = name + ': ' + text;
+            element.querySelector('.message__time').textContent = time;
+            _uiElements.UI_ELEMENTS.CHAT.append(element);
+        }
     }
 }
 
-},{"./view":"2GA9o","date-fns":"9yHCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -3661,30 +3695,126 @@ var quartersInYear = 4;
 var secondsInHour = 3600;
 var secondsInMinute = 60;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gTNPd":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1j8D1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "URL", ()=>URL
+);
+parcelHelpers.export(exports, "URL_USER_AUTHORIZATION", ()=>URL_USER_AUTHORIZATION
+);
+parcelHelpers.export(exports, "URL_MESSAGES", ()=>URL_MESSAGES
+);
+parcelHelpers.export(exports, "USER", ()=>USER
+);
+// const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvcnNoaWNoZWsxOTk2QGdtYWlsLmNvbSIsImlhdCI6MTY1MTQwNjgxMywiZXhwIjoxNjUxODUzMjEzfQ.JJk9Nn-i0HHjdkf0uk9cC55OtsgLg891TqTHpyepvtE'
+const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
+const URL_USER_AUTHORIZATION = 'https://mighty-cove-31255.herokuapp.com/api/user/me';
+const URL_MESSAGES = 'https://mighty-cove-31255.herokuapp.com/api/messages';
+const USER = {};
+const user = {};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"SLwc6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "changeName", ()=>changeName
+);
+parcelHelpers.export(exports, "authorization", ()=>authorization
+);
 parcelHelpers.export(exports, "getCode", ()=>getCode
 );
-var _view = require("./view");
+var _uiElements = require("./uiElements");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _constants = require("./constants");
+var _cookie = require("./cookie");
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _showserverresponse = require("./showserverresponse");
+var _message = require("./message");
 async function getCode() {
     event.preventDefault();
     try {
-        const email = _view.UI_ELEMENTS.INPUTS.AUTHORIZATION.value;
+        const email = _uiElements.UI_ELEMENTS.INPUTS.MAIL.value;
         const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
         const response = await _axiosDefault.default.post(URL, {
             email: String(email)
         });
-        if (response.data.success) _showserverresponse.showSuccess();
+        if (response.status === 200) _showserverresponse.responseSuccess();
     } catch (error) {
-        _showserverresponse.showError();
+        _showserverresponse.responseError();
     }
 }
+async function authorization() {
+    event.preventDefault();
+    const TOKEN = _uiElements.UI_ELEMENTS.INPUTS.CODE.value;
+    _cookie.AUTHORIZATION_COOKIE.setCookie('authorization_token', TOKEN);
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${_jsCookieDefault.default.get('authorization_token')}`
+        }
+    };
+    try {
+        const response = await _axiosDefault.default.get(_constants.URL_USER_AUTHORIZATION, config);
+        if (response.status === 200) {
+            _constants.USER.name = response.data.name;
+            _constants.USER.id = response.data._id;
+            await showMessageStory();
+            _showserverresponse.responseSuccess();
+        }
+    } catch (error) {
+        _showserverresponse.responseError();
+    }
+}
+async function changeName() {
+    event.preventDefault();
+    const name = _uiElements.UI_ELEMENTS.INPUTS.NAME.value;
+    const data = {
+        name: name
+    };
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${_jsCookieDefault.default.get('authorization_token')}`
+        }
+    };
+    try {
+        const response = await _axiosDefault.default.patch(_constants.URL, data, config);
+        if (response.status === 200) {
+            _constants.USER.name = name;
+            _showserverresponse.responseSuccess();
+        }
+    } catch (error) {
+        _showserverresponse.responseError();
+    }
+}
+async function showMessageStory() {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${_jsCookieDefault.default.get('authorization_token')}`
+        }
+    };
+    try {
+        const response = await _axiosDefault.default.get(_constants.URL_MESSAGES, config);
+        if (response.status === 200) {
+            const messages = response.data.messages;
+            getLastMessages(messages);
+            console.log(getLastMessages(messages));
+        // const usersMessage = new Message({
+        //   id: response.data.id,
+        //   text: response.data.text,
+        // })
+        }
+    } catch (error) {
+        _showserverresponse.responseError();
+    }
+}
+function getLastMessages(messages) {
+    messages.splice(5);
+    messages.forEach((message)=>{
+        new _message.Message().renderMessage(message.id, message.name, message.text, message.time);
+    });
+}
 
-},{"./view":"2GA9o","axios":"jo6P5","./showserverresponse":"1XFq7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -7031,62 +7161,7 @@ var utils = require('./../utils');
     return utils.isObject(payload) && payload.isAxiosError === true;
 };
 
-},{"./../utils":"5By4s"}],"1XFq7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "showError", ()=>showError
-);
-parcelHelpers.export(exports, "showSuccess", ()=>showSuccess
-);
-var _view = require("./view");
-function showError() {
-    _view.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
-    <div class="error">
-      Что-то пошло не так
-    </div>
-  `);
-    setTimeout(()=>{
-        const error = document.querySelector('.error');
-        error.remove();
-    }, 3000);
-}
-function showSuccess() {
-    _view.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
-    <div class="success">
-      Письмо отправлено
-    </div>
-  `);
-    setTimeout(()=>{
-        const success = document.querySelector('.success');
-        success.remove();
-    }, 3000);
-}
-
-},{"./view":"2GA9o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iH89i":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sendName", ()=>sendName
-);
-var _view = require("./view");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _cookie = require("./cookie");
-async function sendName() {
-    try {
-        const name = _view.UI_ELEMENTS.INPUTS.SETTINGS.value;
-        _cookie.AUTHORIZATION_COOKIE.setCookie();
-        const TOKEN = _cookie.AUTHORIZATION_COOKIE.getCookie('token');
-        const response = await _axiosDefault.default.patch(URL, {
-            Authorization: `Bearer ${TOKEN}`,
-            name: name
-        });
-        if (response.data.success) console.log('Гуд');
-    } catch (e) {
-        console.log('Не гуд');
-    }
-}
-
-},{"./view":"2GA9o","axios":"jo6P5","./cookie":"iflT4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iflT4":[function(require,module,exports) {
+},{"./../utils":"5By4s"}],"iflT4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Cookie", ()=>Cookie
@@ -7095,7 +7170,6 @@ parcelHelpers.export(exports, "AUTHORIZATION_COOKIE", ()=>AUTHORIZATION_COOKIE
 );
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
-var _constants = require("./constants");
 class Cookie {
     constructor(key, value){
         this.key = key;
@@ -7105,15 +7179,15 @@ class Cookie {
         _jsCookieDefault.default.set(key, value);
     }
     getCookie(key) {
-        _jsCookieDefault.default.get(key);
+        return _jsCookieDefault.default.get(key);
     }
     deleteCookie(key) {
         _jsCookieDefault.default.remove(key);
     }
 }
-const AUTHORIZATION_COOKIE = new Cookie('token', _constants.TOKEN);
+const AUTHORIZATION_COOKIE = new Cookie();
 
-},{"js-cookie":"c8bBu","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+},{"js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
 (function(global, factory) {
     module.exports = factory();
 })(this, function() {
@@ -7203,16 +7277,37 @@ const AUTHORIZATION_COOKIE = new Cookie('token', _constants.TOKEN);
     /* eslint-enable no-var */ return api;
 });
 
-},{}],"1j8D1":[function(require,module,exports) {
+},{}],"1XFq7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TOKEN", ()=>TOKEN
+parcelHelpers.export(exports, "responseError", ()=>responseError
 );
-parcelHelpers.export(exports, "URL", ()=>URL
+parcelHelpers.export(exports, "responseSuccess", ()=>responseSuccess
 );
-let TOKEN;
-let URL;
+var _uiElements = require("./uiElements");
+function responseError() {
+    _uiElements.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
+    <div class="error">
+      Что-то пошло не так
+    </div>
+  `);
+    setTimeout(()=>{
+        const error = document.querySelector('.error');
+        error.remove();
+    }, 3000);
+}
+function responseSuccess() {
+    _uiElements.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
+    <div class="success">
+      Успешный запрос
+    </div>
+  `);
+    setTimeout(()=>{
+        const success = document.querySelector('.success');
+        success.remove();
+    }, 3000);
+}
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
+},{"./uiElements":"bu0XR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
 
 //# sourceMappingURL=index.59310d25.js.map

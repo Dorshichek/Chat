@@ -1,8 +1,10 @@
 export {
-  TOKEN, URL
+  URL, URL_USER_AUTHORIZATION, URL_MESSAGES, USER
 }
-let TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdmx1Y2hlbmtvOTYub3JnQG1haWwucnUiLCJpYXQiOjE2NTEwOTc4MDcsImV4cCI6MTY1MTU0NDIwN30.NshFd9LoIiSic9ttmxt79m2oh - eyIw9a - EADBVpubb4'
-let URL: 'https://mighty-cove-31255.herokuapp.com/api/user'
 
-
-
+  // const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvcnNoaWNoZWsxOTk2QGdtYWlsLmNvbSIsImlhdCI6MTY1MTQwNjgxMywiZXhwIjoxNjUxODUzMjEzfQ.JJk9Nn-i0HHjdkf0uk9cC55OtsgLg891TqTHpyepvtE'
+const URL = 'https://mighty-cove-31255.herokuapp.com/api/user'
+const URL_USER_AUTHORIZATION = 'https://mighty-cove-31255.herokuapp.com/api/user/me'
+const URL_MESSAGES = 'https://mighty-cove-31255.herokuapp.com/api/messages'
+const USER = {}
+const user = {}

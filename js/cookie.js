@@ -1,5 +1,4 @@
 import Cookies from "js-cookie"
-import {TOKEN} from "./constants";
 
 export {
   Cookie,
@@ -17,7 +16,7 @@ class Cookie {
   }
 
   getCookie(key) {
-    Cookies.get(key)
+    return Cookies.get(key)
   }
 
   deleteCookie(key) {
@@ -25,4 +24,4 @@ class Cookie {
   }
 }
 
-const AUTHORIZATION_COOKIE = new Cookie('token', TOKEN)
+const AUTHORIZATION_COOKIE = new Cookie()

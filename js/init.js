@@ -1,7 +1,8 @@
-import {UI_ELEMENTS} from "./view";
-import {createMessage} from "./message";
-import {getCode} from "./token";
-import {sendName} from "./authorization";
+import {UI_ELEMENTS} from "./uiElements";
+import {createMessage, Message} from "./message";
+import {getCode, changeName, authorization} from "./requests";
+
+document.addEventListener('DOMContentLoaded', init)
 
 export function init() {
   UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function () {
@@ -24,14 +25,16 @@ export function init() {
       UI_ELEMENTS.MODALS.WRAPPER.classList.remove('modal-active')
       UI_ELEMENTS.MODALS.SETTINGS.classList.remove('modal-active')
       UI_ELEMENTS.MODALS.AUTHORIZATION.classList.remove('modal-active')
-      UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active')  })
+      UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active')
+    })
   })
 
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 
-  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', createMessage)
+  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', Message.renderMessage)
 
-  UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', sendName)
+  UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', changeName)
+
+  UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', authorization)
 }
 
-init()

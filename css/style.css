@@ -523,11 +523,14 @@ th {
   border: 1px solid #000000;
   display: flex;
   flex-flow: column-reverse nowrap;
+  overflow: auto;
+  -ms-overflow-style: none;
 }
 .chat__wrapper {
   display: flex;
   flex-direction: column;
 }
+
 .message__wrapper {
   display: flex;
   flex-direction: column;
@@ -536,7 +539,6 @@ th {
   background-color: #E5E5E5;
   gap: 5px;
   min-width: 120px;
-  align-self: flex-end;
 }
 .message__time {
   align-self: flex-end;
@@ -545,6 +547,14 @@ th {
   font-size: 14px;
   line-height: 16px;
   color: #333333;
+}
+
+.my-message {
+  align-self: flex-end;
+}
+
+.other-message {
+  align-self: flex-start;
 }
 
 body {

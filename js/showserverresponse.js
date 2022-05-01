@@ -1,6 +1,6 @@
-import {UI_ELEMENTS} from "./view";
+import {UI_ELEMENTS} from "./uiElements";
 
-export function showError() {
+export function responseError() {
   UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
     <div class="error">
       Что-то пошло не так
@@ -13,10 +13,10 @@ export function showError() {
   }, 3000)
 }
 
-export function showSuccess() {
+export function responseSuccess() {
   UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
     <div class="success">
-      Письмо отправлено
+      Успешный запрос
     </div>
   `)
 
