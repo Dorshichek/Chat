@@ -4,7 +4,7 @@ import {USER, URL, URL_USER_AUTHORIZATION, URL_MESSAGES} from "./constants";
 import {AUTHORIZATION_COOKIE} from "./cookie";
 import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
-import {Message} from "./message";
+import {createMessage} from "./message";
 
 export {
   changeName, authorization, getCode
@@ -41,6 +41,7 @@ async function authorization() {
     if (response.status === 200) {
       USER.name = response.data.name
       USER.id = response.data._id
+      console.log(USER)
       await showMessageStory()
       responseSuccess()
     }
@@ -83,7 +84,7 @@ async function showMessageStory() {
     if (response.status === 200) {
       const messages = response.data.messages
       getLastMessages(messages)
-      console.log(getLastMessages(messages))
+      console.log(messages)
       // const usersMessage = new Message({
       //   id: response.data.id,
       //   text: response.data.text,
@@ -95,9 +96,10 @@ async function showMessageStory() {
 }
 
 function getLastMessages(messages) {
-  messages.splice(5)
+  messages.splice(10)
   messages.forEach((message) => {
-    new Message().renderMessage(message.id, message.name, message.text, message.time)
+    console.log(message.createdAt)
+    createMessage(message._id, message.user.name, message.text, message.createdAt)
   })
 }
 

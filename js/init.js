@@ -1,6 +1,7 @@
 import {UI_ELEMENTS} from "./uiElements";
-import {createMessage, Message} from "./message";
+import {createMessage, myMessage} from "./message";
 import {getCode, changeName, authorization} from "./requests";
+import {USER} from "./constants";
 
 document.addEventListener('DOMContentLoaded', init)
 
@@ -31,7 +32,7 @@ export function init() {
 
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 
-  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', Message.renderMessage)
+  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', createMessage)
 
   UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', changeName)
 

@@ -533,6 +533,7 @@ parcelHelpers.export(exports, "init", ()=>init
 var _uiElements = require("./uiElements");
 var _message = require("./message");
 var _requests = require("./requests");
+var _constants = require("./constants");
 document.addEventListener('DOMContentLoaded', init);
 function init() {
     _uiElements.UI_ELEMENTS.BUTTONS.SETTINGS.addEventListener('click', function() {
@@ -556,12 +557,12 @@ function init() {
         });
     });
     _uiElements.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _requests.getCode);
-    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.Message.renderMessage);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _requests.changeName);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
 
-},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./constants":"1j8D1"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -629,56 +630,69 @@ exports.export = function(dest, destName, get) {
 },{}],"lGCpb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Message", ()=>Message
+parcelHelpers.export(exports, "createMessage", ()=>// Message, myMessage
+    createMessage
 );
 var _uiElements = require("./uiElements");
 var _dateFns = require("date-fns");
 var _constants = require("./constants");
-// function createMessage() {
-//   event.preventDefault()
-//   const message = UI_ELEMENTS.INPUTS.MESSAGE.value
-//   if (message) {
-//     const element = document.createElement('div')
-//     element.className = 'message__wrapper my_message'
-//     element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
-//     element.querySelector('.message__text').textContent = USER.name + ': ' + message
-//     element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
-//     UI_ELEMENTS.CHAT.append(element)
-//     UI_ELEMENTS.INPUTS.MESSAGE.value = ''
-//   }
-// }
-class Message {
-    constructor(id = _constants.USER.id, name, text, time){
-        this.id = id;
-        this.name = name;
-        this.text = text;
-        this.time = time;
+function createMessage(id, name, text, time) {
+    event.preventDefault();
+    const isMyMessage = !!id;
+    const message = _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value;
+    if (message) {
+        const element = document.createElement('div');
+        isMyMessage ? element.className = 'message__wrapper my-message' : element.className = 'message__wrapper';
+        element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
+        element.querySelector('.message__text').textContent = _constants.USER.name + ': ' + message;
+        element.querySelector('.message__time').textContent = _dateFns.format(new Date(), '	HH:mm');
+        _uiElements.UI_ELEMENTS.CHAT.append(element);
+        _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value = '';
+    } else {
+        const element = document.createElement('div');
+        element.className = 'message__wrapper other-message';
+        element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
+        element.querySelector('.message__text').textContent = name + ': ' + text;
+        element.querySelector('.message__time').textContent = time.slice(11, 16);
+        _uiElements.UI_ELEMENTS.CHAT.append(element);
     }
-    renderMessage(id, name, text, time) {
-        event.preventDefault();
-        if (id === _constants.USER.id) {
-            const message = _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value;
-            if (message) {
-                const element = document.createElement('div');
-                element.className = 'message__wrapper my-message' //my_message
-                ;
-                element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
-                element.querySelector('.message__text').textContent = name + ': ' + message //USER.name
-                ;
-                element.querySelector('.message__time').textContent = _dateFns.format(new Date(), '	HH:mm');
-                _uiElements.UI_ELEMENTS.CHAT.append(element);
-                _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value = '';
-            }
-        } else {
-            const element = document.createElement('div');
-            element.className = 'message__wrapper other-message';
-            element.append(_uiElements.UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true));
-            element.querySelector('.message__text').textContent = name + ': ' + text;
-            element.querySelector('.message__time').textContent = time;
-            _uiElements.UI_ELEMENTS.CHAT.append(element);
-        }
-    }
-}
+} // const socket = new WebSocket(`ws://mighty-cove-31255.herokuapp.com/websockets?TOKEN`)
+ //
+ // class Message {
+ //
+ //   constructor(id = USER.id, name, text, time) {
+ //     this.id = id
+ //     this.name = name
+ //     this.text = text
+ //     this.time = time
+ //   }
+ //
+ //   renderMessage(id, name, text, time) {
+ //     event.preventDefault()
+ //     if (id === USER.id) {
+ //       const message = UI_ELEMENTS.INPUTS.MESSAGE.value
+ //       if (message) {
+ //         const element = document.createElement('div')
+ //         element.className = 'message__wrapper my-message' //my_message
+ //         element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
+ //         const myMessage = element.querySelector('.message__text').textContent = name + ': ' + message//USER.name
+ //         socket.send(myMessage)
+ //         element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
+ //         UI_ELEMENTS.CHAT.append(element)
+ //         UI_ELEMENTS.INPUTS.MESSAGE.value = ''
+ //       }
+ //     } else {
+ //       const element = document.createElement('div')
+ //       element.className = 'message__wrapper other-message'
+ //       element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
+ //       element.querySelector('.message__text').textContent = name + ': ' + text
+ //       element.querySelector('.message__time').textContent = time
+ //       UI_ELEMENTS.CHAT.append(element)
+ //     }
+ //   }
+ // }
+ //
+ // const myMessage = new Message()
 
 },{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -3711,7 +3725,6 @@ const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
 const URL_USER_AUTHORIZATION = 'https://mighty-cove-31255.herokuapp.com/api/user/me';
 const URL_MESSAGES = 'https://mighty-cove-31255.herokuapp.com/api/messages';
 const USER = {};
-const user = {};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"SLwc6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -3758,6 +3771,7 @@ async function authorization() {
         if (response.status === 200) {
             _constants.USER.name = response.data.name;
             _constants.USER.id = response.data._id;
+            console.log(_constants.USER);
             await showMessageStory();
             _showserverresponse.responseSuccess();
         }
@@ -3797,7 +3811,7 @@ async function showMessageStory() {
         if (response.status === 200) {
             const messages = response.data.messages;
             getLastMessages(messages);
-            console.log(getLastMessages(messages));
+            console.log(messages);
         // const usersMessage = new Message({
         //   id: response.data.id,
         //   text: response.data.text,
@@ -3808,9 +3822,10 @@ async function showMessageStory() {
     }
 }
 function getLastMessages(messages) {
-    messages.splice(5);
+    messages.splice(10);
     messages.forEach((message)=>{
-        new _message.Message().renderMessage(message.id, message.name, message.text, message.time);
+        console.log(message.createdAt);
+        _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
     });
 }
 
