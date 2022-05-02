@@ -15,7 +15,6 @@ async function getCode() {
   event.preventDefault()
   try {
     const email = UI_ELEMENTS.INPUTS.MAIL.value
-    const URL = 'https://mighty-cove-31255.herokuapp.com/api/user'
     const response = await axios.post(URL, {
       email: String(email),
     })
@@ -41,7 +40,6 @@ async function authorization() {
     if (response.status === 200) {
       USER.name = response.data.name
       USER.id = response.data._id
-      console.log(USER)
       await showMessageStory()
       responseSuccess()
     }
@@ -84,11 +82,6 @@ async function showMessageStory() {
     if (response.status === 200) {
       const messages = response.data.messages
       getLastMessages(messages)
-      console.log(messages)
-      // const usersMessage = new Message({
-      //   id: response.data.id,
-      //   text: response.data.text,
-      // })
     }
   } catch (error) {
     responseError()
@@ -96,9 +89,8 @@ async function showMessageStory() {
 }
 
 function getLastMessages(messages) {
-  messages.splice(10)
-  messages.forEach((message) => {
-    console.log(message.createdAt)
+  let lastMessages = messages.slice(-15)
+  lastMessages.forEach((message) => {
     createMessage(message._id, message.user.name, message.text, message.createdAt)
   })
 }

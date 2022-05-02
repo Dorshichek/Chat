@@ -2,7 +2,7 @@ import {UI_ELEMENTS} from "./uiElements";
 
 export function responseError() {
   UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
-    <div class="error">
+    <div class="error"> 
       Что-то пошло не так
     </div>
   `)

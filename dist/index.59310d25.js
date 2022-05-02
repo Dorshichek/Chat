@@ -562,7 +562,7 @@ function init() {
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
 
-},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./constants":"1j8D1"}],"bu0XR":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -3748,8 +3748,7 @@ async function getCode() {
     event.preventDefault();
     try {
         const email = _uiElements.UI_ELEMENTS.INPUTS.MAIL.value;
-        const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
-        const response = await _axiosDefault.default.post(URL, {
+        const response = await _axiosDefault.default.post(_constants.URL, {
             email: String(email)
         });
         if (response.status === 200) _showserverresponse.responseSuccess();
@@ -3771,7 +3770,6 @@ async function authorization() {
         if (response.status === 200) {
             _constants.USER.name = response.data.name;
             _constants.USER.id = response.data._id;
-            console.log(_constants.USER);
             await showMessageStory();
             _showserverresponse.responseSuccess();
         }
@@ -3811,20 +3809,14 @@ async function showMessageStory() {
         if (response.status === 200) {
             const messages = response.data.messages;
             getLastMessages(messages);
-            console.log(messages);
-        // const usersMessage = new Message({
-        //   id: response.data.id,
-        //   text: response.data.text,
-        // })
         }
     } catch (error) {
         _showserverresponse.responseError();
     }
 }
 function getLastMessages(messages) {
-    messages.splice(10);
-    messages.forEach((message)=>{
-        console.log(message.createdAt);
+    let lastMessages = messages.slice(-15);
+    lastMessages.forEach((message)=>{
         _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
     });
 }
@@ -7302,7 +7294,7 @@ parcelHelpers.export(exports, "responseSuccess", ()=>responseSuccess
 var _uiElements = require("./uiElements");
 function responseError() {
     _uiElements.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
-    <div class="error">
+    <div class="error"> 
       Что-то пошло не так
     </div>
   `);
