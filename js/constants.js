@@ -7,4 +7,3 @@ const URL = 'https://mighty-cove-31255.herokuapp.com/api/user'
 const URL_USER_AUTHORIZATION = 'https://mighty-cove-31255.herokuapp.com/api/user/me'
 const URL_MESSAGES = 'https://mighty-cove-31255.herokuapp.com/api/messages'
 const USER = {}
-const user = {}
