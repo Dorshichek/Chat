@@ -36,7 +36,7 @@ body {
 }
 
 input {
-  border: 2px solid #000000;
+  border: 2px solid #535353;
   border-radius: 5px;
 }
 
@@ -46,23 +46,25 @@ input:focus {
 
 button {
   background-color: #fff;
-  border: 1px solid #000;
+  border-color: #535353;
   padding: 7px;
   border-radius: 10px;
-  box-shadow: 1px 2px 3px #000000;
 }
 
 button:hover {
-  box-shadow: 3px 4px 5px #000000;
+  box-shadow: 1px 1px 1px #535353;
 }
 
 button:active {
   visibility: visible;
   opacity: 1;
   pointer-events: all;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: all 0.2s;
   transform: translateY(0);
+  background-color: unset;
+  border: unset;
+  box-shadow: 1px 1px 1px #535353;
 }
 
 html,
@@ -553,6 +555,21 @@ th {
   flex-flow: column-reverse nowrap;
   overflow: auto;
   -ms-overflow-style: none;
+  scrollbar-color: #535353;
+  scrollbar-width: thin;
+}
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+.chat::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 50px;
+}
+.chat::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #79787e;
 }
 .chat__wrapper {
   display: flex;
@@ -567,12 +584,13 @@ th {
   background-color: #E5E5E5;
   gap: 5px;
   min-width: 120px;
+  border-radius: 5px;
 }
 .message__time {
   align-self: flex-end;
   font-style: italic;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 16px;
   color: #333333;
 }
@@ -603,11 +621,6 @@ body {
 .header__buttons {
   display: flex;
   justify-content: space-between;
-}
-.header__buttons button {
-  padding: 7px;
-  border: 1px solid #000000;
-  background-color: #FFFFFF;
 }
 
 .footer {

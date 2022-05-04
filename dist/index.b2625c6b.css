@@ -34,7 +34,7 @@ body {
 }
 
 input {
-  border: 2px solid #000;
+  border: 2px solid #535353;
   border-radius: 5px;
 }
 
@@ -44,23 +44,25 @@ input:focus {
 
 button {
   background-color: #fff;
-  border: 1px solid #000;
+  border-color: #535353;
   border-radius: 10px;
   padding: 7px;
-  box-shadow: 1px 2px 3px #000;
 }
 
 button:hover {
-  box-shadow: 3px 4px 5px #000;
+  box-shadow: 1px 1px 1px #535353;
 }
 
 button:active {
   visibility: visible;
   opacity: 1;
   pointer-events: all;
-  border-radius: 20px;
+  background-color: unset;
+  border: unset;
+  border-radius: 10px;
   transition: all .2s;
   transform: translateY(0);
+  box-shadow: 1px 1px 1px #535353;
 }
 
 html, body {
@@ -319,10 +321,28 @@ td, th {
   width: 304px;
   height: 430px;
   -ms-overflow-style: none;
+  scrollbar-color: #535353;
+  scrollbar-width: thin;
   border: 1px solid #000;
   flex-flow: column-reverse;
   display: flex;
   overflow: auto;
+}
+
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+
+.chat::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 50px;
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: #79787e;
+  background-clip: content-box;
+  border: 5px solid #0000;
+  border-radius: 50px;
 }
 
 .chat__wrapper {
@@ -333,6 +353,7 @@ td, th {
 .message__wrapper {
   min-width: 120px;
   background-color: #e5e5e5;
+  border-radius: 5px;
   flex-direction: column;
   gap: 5px;
   margin: 5px;
@@ -343,7 +364,7 @@ td, th {
 .message__time {
   color: #333;
   align-self: flex-end;
-  font-size: 14px;
+  font-size: 11px;
   font-style: italic;
   font-weight: 300;
   line-height: 16px;
@@ -376,12 +397,6 @@ body {
 .header__buttons {
   justify-content: space-between;
   display: flex;
-}
-
-.header__buttons button {
-  background-color: #fff;
-  border: 1px solid #000;
-  padding: 7px;
 }
 
 .footer {
