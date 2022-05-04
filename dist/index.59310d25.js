@@ -562,7 +562,7 @@ function init() {
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
 
-},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./constants":"1j8D1"}],"bu0XR":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -694,7 +694,7 @@ function createMessage(id, name, text, time) {
  //
  // const myMessage = new Message()
 
-},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./requests":"SLwc6"}],"9yHCA":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.

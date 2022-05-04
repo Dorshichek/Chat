@@ -33,6 +33,36 @@ body {
   display: flex;
 }
 
+input {
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+input:focus {
+  border: 2px solid #b43333;
+}
+
+button {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 7px;
+  box-shadow: 1px 2px 3px #000;
+}
+
+button:hover {
+  box-shadow: 3px 4px 5px #000;
+}
+
+button:active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  border-radius: 20px;
+  transition: all .2s;
+  transform: translateY(0);
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -246,7 +276,8 @@ td, th {
   height: 319px;
   z-index: 10;
   background-color: #fff;
-  padding: 14px;
+  border-radius: 15px;
+  padding: 20px;
   display: none;
   position: absolute;
   top: 106px;
@@ -272,15 +303,12 @@ td, th {
 }
 
 .modal-settings__input, .modal-code__input, .modal-authorization__input {
-  width: 207px;
+  width: 190px;
   padding: 7px;
 }
 
 .modal-settings__send, .modal-code__send, .modal-authorization__send {
-  background-color: #fff;
-  border: 1px solid #000;
   margin-top: 7px;
-  padding: 7px;
 }
 
 .modal-active {
