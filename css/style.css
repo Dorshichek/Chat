@@ -35,6 +35,38 @@ body {
   background-color: #535353;
 }
 
+input {
+  border: 2px solid #535353;
+  border-radius: 5px;
+}
+
+input:focus {
+  border: 2px solid #b43333;
+}
+
+button {
+  background-color: #fff;
+  border-color: #535353;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+button:hover {
+  box-shadow: 1px 1px 1px #535353;
+}
+
+button:active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  border-radius: 10px;
+  transition: all 0.2s;
+  transform: translateY(0);
+  background-color: unset;
+  border: unset;
+  box-shadow: 1px 1px 1px #535353;
+}
+
 html,
 body {
   height: 100%;
@@ -484,7 +516,8 @@ th {
   z-index: 10;
   left: 24px;
   background-color: #FFFFFF;
-  padding: 14px;
+  padding: 20px;
+  border-radius: 15px;
 }
 .modal__close {
   position: absolute;
@@ -504,13 +537,10 @@ th {
 }
 .modal-settings__input, .modal-code__input, .modal-authorization__input {
   padding: 7px;
-  width: 207px;
+  width: 190px;
 }
 .modal-settings__send, .modal-code__send, .modal-authorization__send {
   margin-top: 7px;
-  padding: 7px;
-  background-color: #FFFFFF;
-  border: 1px solid #000000;
 }
 
 .modal-active {
@@ -525,6 +555,21 @@ th {
   flex-flow: column-reverse nowrap;
   overflow: auto;
   -ms-overflow-style: none;
+  scrollbar-color: #535353;
+  scrollbar-width: thin;
+}
+.chat::-webkit-scrollbar {
+  width: 20px;
+}
+.chat::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 50px;
+}
+.chat::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #79787e;
 }
 .chat__wrapper {
   display: flex;
@@ -539,12 +584,13 @@ th {
   background-color: #E5E5E5;
   gap: 5px;
   min-width: 120px;
+  border-radius: 5px;
 }
 .message__time {
   align-self: flex-end;
   font-style: italic;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 16px;
   color: #333333;
 }
@@ -575,11 +621,6 @@ body {
 .header__buttons {
   display: flex;
   justify-content: space-between;
-}
-.header__buttons button {
-  padding: 7px;
-  border: 1px solid #000000;
-  background-color: #FFFFFF;
 }
 
 .footer {

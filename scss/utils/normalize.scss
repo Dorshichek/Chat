@@ -19,6 +19,38 @@ body {
   background-color: $background;
 }
 
+input {
+  border: 2px solid $background;
+  border-radius: 5px;
+}
+
+input:focus {
+  border: 2px solid #b43333;
+}
+
+button {
+  background-color: #fff;
+  border-color: $background;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+button:hover {
+  box-shadow: 1px 1px 1px $background;
+}
+
+button:active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  border-radius: 10px;
+  transition: all .2s;
+  transform: translateY(0);
+  background-color: unset;
+  border: unset;
+  box-shadow: 1px 1px 1px $background;
+}
+
 html,
 body {
   height: 100%;

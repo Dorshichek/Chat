@@ -10,12 +10,12 @@ export {
   changeName, authorization, getCode
 }
 
+export const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`)
 
 async function getCode() {
   event.preventDefault()
   try {
     const email = UI_ELEMENTS.INPUTS.MAIL.value
-    const URL = 'https://mighty-cove-31255.herokuapp.com/api/user'
     const response = await axios.post(URL, {
       email: String(email),
     })
@@ -41,7 +41,6 @@ async function authorization() {
     if (response.status === 200) {
       USER.name = response.data.name
       USER.id = response.data._id
-      console.log(USER)
       await showMessageStory()
       responseSuccess()
     }
@@ -84,11 +83,6 @@ async function showMessageStory() {
     if (response.status === 200) {
       const messages = response.data.messages
       getLastMessages(messages)
-      console.log(messages)
-      // const usersMessage = new Message({
-      //   id: response.data.id,
-      //   text: response.data.text,
-      // })
     }
   } catch (error) {
     responseError()
@@ -96,10 +90,43 @@ async function showMessageStory() {
 }
 
 function getLastMessages(messages) {
-  messages.splice(10)
-  messages.forEach((message) => {
-    console.log(message.createdAt)
+  let lastMessages = messages.slice(-15)
+  lastMessages.forEach((message) => {
     createMessage(message._id, message.user.name, message.text, message.createdAt)
   })
 }
 
+
+WEBSOCKET.onopen = () => {
+  console.log('Connection')
+}
+
+WEBSOCKET.onmessage = (event) => {
+  const message = JSON.parse(event.data)
+  createMessage(message._id, message.user.name, message.text, message.createdAt)
+}
+
+export async function sendMessage() {
+  event.preventDefault()
+  let text = UI_ELEMENTS.INPUTS.MESSAGE.value
+  if (!text) return;
+  WEBSOCKET.send(
+      JSON.stringify({
+        text: text,
+      })
+  );
+}
+
+WEBSOCKET.onerror = (error) => {
+  console.log(error)
+}
+
+WEBSOCKET.onclose = (event) => {
+  if (event.wasClean) {
+    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+  } else {
+    console.log("[close] Соединение прервано");
+    setTimeout(() => {
+    }, 5000);
+  }
+}

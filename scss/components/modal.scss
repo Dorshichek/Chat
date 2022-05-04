@@ -21,7 +21,8 @@
     z-index: 10;
     left: 24px;
     background-color: $white;
-    padding: 14px;
+    padding: 20px;
+    border-radius: 15px;
   }
 
   &__close {
@@ -47,14 +48,11 @@
 
   &__input {
     padding: 7px;
-    width: 207px;
+    width: 190px;
   }
 
   &__send {
     margin-top: 7px;
-    padding: 7px;
-    background-color: $white;
-    border: 1px solid #000000;
   }
 }
 

@@ -557,12 +557,12 @@ function init() {
         });
     });
     _uiElements.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _requests.getCode);
-    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _requests.sendMessage);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _requests.changeName);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
 
-},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./constants":"1j8D1"}],"bu0XR":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -630,12 +630,12 @@ exports.export = function(dest, destName, get) {
 },{}],"lGCpb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createMessage", ()=>// Message, myMessage
-    createMessage
+parcelHelpers.export(exports, "createMessage", ()=>createMessage
 );
 var _uiElements = require("./uiElements");
 var _dateFns = require("date-fns");
 var _constants = require("./constants");
+var _requests = require("./requests");
 function createMessage(id, name, text, time) {
     event.preventDefault();
     const isMyMessage = !!id;
@@ -694,7 +694,7 @@ function createMessage(id, name, text, time) {
  //
  // const myMessage = new Message()
 
-},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -3735,6 +3735,10 @@ parcelHelpers.export(exports, "authorization", ()=>authorization
 );
 parcelHelpers.export(exports, "getCode", ()=>getCode
 );
+parcelHelpers.export(exports, "WEBSOCKET", ()=>WEBSOCKET
+);
+parcelHelpers.export(exports, "sendMessage", ()=>sendMessage
+);
 var _uiElements = require("./uiElements");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -3744,12 +3748,12 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _showserverresponse = require("./showserverresponse");
 var _message = require("./message");
+const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${_jsCookieDefault.default.get('authorization_token')}`);
 async function getCode() {
     event.preventDefault();
     try {
         const email = _uiElements.UI_ELEMENTS.INPUTS.MAIL.value;
-        const URL = 'https://mighty-cove-31255.herokuapp.com/api/user';
-        const response = await _axiosDefault.default.post(URL, {
+        const response = await _axiosDefault.default.post(_constants.URL, {
             email: String(email)
         });
         if (response.status === 200) _showserverresponse.responseSuccess();
@@ -3771,7 +3775,6 @@ async function authorization() {
         if (response.status === 200) {
             _constants.USER.name = response.data.name;
             _constants.USER.id = response.data._id;
-            console.log(_constants.USER);
             await showMessageStory();
             _showserverresponse.responseSuccess();
         }
@@ -3811,23 +3814,42 @@ async function showMessageStory() {
         if (response.status === 200) {
             const messages = response.data.messages;
             getLastMessages(messages);
-            console.log(messages);
-        // const usersMessage = new Message({
-        //   id: response.data.id,
-        //   text: response.data.text,
-        // })
         }
     } catch (error) {
         _showserverresponse.responseError();
     }
 }
 function getLastMessages(messages) {
-    messages.splice(10);
-    messages.forEach((message)=>{
-        console.log(message.createdAt);
+    let lastMessages = messages.slice(-15);
+    lastMessages.forEach((message)=>{
         _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
     });
 }
+WEBSOCKET.onopen = ()=>{
+    console.log('Connection');
+};
+WEBSOCKET.onmessage = (event)=>{
+    const message = JSON.parse(event.data);
+    _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
+};
+async function sendMessage() {
+    event.preventDefault();
+    let text = _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value;
+    if (!text) return;
+    WEBSOCKET.send(JSON.stringify({
+        text: text
+    }));
+}
+WEBSOCKET.onerror = (error)=>{
+    console.log(error);
+};
+WEBSOCKET.onclose = (event)=>{
+    if (event.wasClean) console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+    else {
+        console.log("[close] Соединение прервано");
+        setTimeout(()=>{}, 5000);
+    }
+};
 
 },{"./uiElements":"bu0XR","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
@@ -7302,7 +7324,7 @@ parcelHelpers.export(exports, "responseSuccess", ()=>responseSuccess
 var _uiElements = require("./uiElements");
 function responseError() {
     _uiElements.UI_ELEMENTS.CONTAINER.insertAdjacentHTML('afterbegin', `
-    <div class="error">
+    <div class="error"> 
       Что-то пошло не так
     </div>
   `);
