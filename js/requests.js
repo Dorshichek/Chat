@@ -10,7 +10,7 @@ export {
   changeName, authorization, getCode
 }
 
-export const WEBSOCKET = new WebSocket(`ws://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`)
+export const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`)
 
 async function getCode() {
   event.preventDefault()
@@ -103,7 +103,18 @@ WEBSOCKET.onopen = () => {
 
 WEBSOCKET.onmessage = (event) => {
   const message = JSON.parse(event.data)
-  createMessage(message)
+  createMessage(message._id, message.user.name, message.text, message.createdAt)
+}
+
+export async function sendMessage() {
+  event.preventDefault()
+  let text = UI_ELEMENTS.INPUTS.MESSAGE.value
+  if (!text) return;
+  WEBSOCKET.send(
+      JSON.stringify({
+        text: text,
+      })
+  );
 }
 
 WEBSOCKET.onerror = (error) => {

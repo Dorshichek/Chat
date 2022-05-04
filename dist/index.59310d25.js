@@ -557,13 +557,12 @@ function init() {
         });
     });
     _uiElements.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _requests.getCode);
-    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _message.createMessage);
+    _uiElements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _requests.sendMessage);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _requests.changeName);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
-function showModal() {}
 
-},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./constants":"1j8D1"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
@@ -3738,6 +3737,8 @@ parcelHelpers.export(exports, "getCode", ()=>getCode
 );
 parcelHelpers.export(exports, "WEBSOCKET", ()=>WEBSOCKET
 );
+parcelHelpers.export(exports, "sendMessage", ()=>sendMessage
+);
 var _uiElements = require("./uiElements");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -3747,7 +3748,7 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _showserverresponse = require("./showserverresponse");
 var _message = require("./message");
-const WEBSOCKET = new WebSocket(`ws://mighty-cove-31255.herokuapp.com/websockets?${_jsCookieDefault.default.get('authorization_token')}`);
+const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${_jsCookieDefault.default.get('authorization_token')}`);
 async function getCode() {
     event.preventDefault();
     try {
@@ -3829,8 +3830,16 @@ WEBSOCKET.onopen = ()=>{
 };
 WEBSOCKET.onmessage = (event)=>{
     const message = JSON.parse(event.data);
-    _message.createMessage(message);
+    _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
 };
+async function sendMessage() {
+    event.preventDefault();
+    let text = _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value;
+    if (!text) return;
+    WEBSOCKET.send(JSON.stringify({
+        text: text
+    }));
+}
 WEBSOCKET.onerror = (error)=>{
     console.log(error);
 };

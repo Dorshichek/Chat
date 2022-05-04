@@ -1,6 +1,6 @@
 import {UI_ELEMENTS} from "./uiElements";
 import {createMessage, myMessage} from "./message";
-import {getCode, changeName, authorization} from "./requests";
+import {getCode, changeName, authorization, sendMessage} from "./requests";
 import {USER} from "./constants";
 
 document.addEventListener('DOMContentLoaded', init)
@@ -32,13 +32,10 @@ export function init() {
 
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 
-  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', createMessage)
+  UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', sendMessage)
 
   UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', changeName)
 
   UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', authorization)
 }
 
-function showModal() {
-
-}
