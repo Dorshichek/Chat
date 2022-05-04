@@ -39,3 +39,6 @@ export function init() {
   UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', authorization)
 }
 
+function showModal() {
+
+}

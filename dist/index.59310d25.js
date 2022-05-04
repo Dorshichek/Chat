@@ -561,6 +561,7 @@ function init() {
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _requests.changeName);
     _uiElements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _requests.authorization);
 }
+function showModal() {}
 
 },{"./uiElements":"bu0XR","./message":"lGCpb","./requests":"SLwc6","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bu0XR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -630,12 +631,12 @@ exports.export = function(dest, destName, get) {
 },{}],"lGCpb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createMessage", ()=>// Message, myMessage
-    createMessage
+parcelHelpers.export(exports, "createMessage", ()=>createMessage
 );
 var _uiElements = require("./uiElements");
 var _dateFns = require("date-fns");
 var _constants = require("./constants");
+var _requests = require("./requests");
 function createMessage(id, name, text, time) {
     event.preventDefault();
     const isMyMessage = !!id;
@@ -694,7 +695,7 @@ function createMessage(id, name, text, time) {
  //
  // const myMessage = new Message()
 
-},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./requests":"SLwc6"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -3735,6 +3736,8 @@ parcelHelpers.export(exports, "authorization", ()=>authorization
 );
 parcelHelpers.export(exports, "getCode", ()=>getCode
 );
+parcelHelpers.export(exports, "WEBSOCKET", ()=>WEBSOCKET
+);
 var _uiElements = require("./uiElements");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -3744,6 +3747,7 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _showserverresponse = require("./showserverresponse");
 var _message = require("./message");
+const WEBSOCKET = new WebSocket(`ws://mighty-cove-31255.herokuapp.com/websockets?${_jsCookieDefault.default.get('authorization_token')}`);
 async function getCode() {
     event.preventDefault();
     try {
@@ -3820,6 +3824,23 @@ function getLastMessages(messages) {
         _message.createMessage(message._id, message.user.name, message.text, message.createdAt);
     });
 }
+WEBSOCKET.onopen = ()=>{
+    console.log('Connection');
+};
+WEBSOCKET.onmessage = (event)=>{
+    const message = JSON.parse(event.data);
+    _message.createMessage(message);
+};
+WEBSOCKET.onerror = (error)=>{
+    console.log(error);
+};
+WEBSOCKET.onclose = (event)=>{
+    if (event.wasClean) console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+    else {
+        console.log("[close] Соединение прервано");
+        setTimeout(()=>{}, 5000);
+    }
+};
 
 },{"./uiElements":"bu0XR","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');

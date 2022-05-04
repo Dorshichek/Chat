@@ -10,6 +10,7 @@ export {
   changeName, authorization, getCode
 }
 
+export const WEBSOCKET = new WebSocket(`ws://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`)
 
 async function getCode() {
   event.preventDefault()
@@ -95,3 +96,26 @@ function getLastMessages(messages) {
   })
 }
 
+
+WEBSOCKET.onopen = () => {
+  console.log('Connection')
+}
+
+WEBSOCKET.onmessage = (event) => {
+  const message = JSON.parse(event.data)
+  createMessage(message)
+}
+
+WEBSOCKET.onerror = (error) => {
+  console.log(error)
+}
+
+WEBSOCKET.onclose = (event) => {
+  if (event.wasClean) {
+    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+  } else {
+    console.log("[close] Соединение прервано");
+    setTimeout(() => {
+    }, 5000);
+  }
+}

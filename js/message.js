@@ -1,9 +1,9 @@
 import {UI_ELEMENTS} from "./uiElements";
 import {format} from "date-fns";
 import {USER} from "./constants";
+import {WEBSOCKET} from "./requests";
 
 export {
-  // Message, myMessage
   createMessage
 }
 
