@@ -1,10 +1,11 @@
-import {UI_ELEMENTS} from "./uiElements";
+import {UI_ELEMENTS} from "./uielements";
 import axios from "axios";
 import {USER, URL, URL_USER_AUTHORIZATION, URL_MESSAGES} from "./constants";
 import {AUTHORIZATION_COOKIE} from "./cookie";
 import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
 import {createMessage} from "./message";
+import {clearInput, closeModal, showModal} from "./main";
 
 export {
   changeName, authorization, getCode
@@ -20,7 +21,10 @@ async function getCode() {
       email: String(email),
     })
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.MAIL)
       responseSuccess()
+      closeModal()
+      showModal(UI_ELEMENTS.MODALS.AUTHORIZATION)
     }
   } catch (error) {
     responseError()
@@ -39,10 +43,12 @@ async function authorization() {
   try {
     const response = await axios.get(URL_USER_AUTHORIZATION, config)
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.CODE)
       USER.name = response.data.name
       USER.id = response.data._id
       await showMessageStory()
       responseSuccess()
+      closeModal()
     }
   } catch (error) {
     responseError()
@@ -63,8 +69,10 @@ async function changeName() {
   try {
     const response = await axios.patch(URL, data, config)
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.NAME)
       USER.name = name
       responseSuccess()
+      closeModal()
     }
   } catch
       (error) {
@@ -83,6 +91,7 @@ async function showMessageStory() {
     if (response.status === 200) {
       const messages = response.data.messages
       getLastMessages(messages)
+      closeModal()
     }
   } catch (error) {
     responseError()
