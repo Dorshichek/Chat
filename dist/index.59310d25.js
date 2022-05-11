@@ -636,6 +636,7 @@ var _uiElements = require("./uiElements");
 var _dateFns = require("date-fns");
 var _constants = require("./constants");
 var _requests = require("./requests");
+var _main = require("./main");
 function createMessage(id, name, text, time) {
     event.preventDefault();
     const isMyMessage = !!id;
@@ -647,7 +648,7 @@ function createMessage(id, name, text, time) {
         element.querySelector('.message__text').textContent = _constants.USER.name + ': ' + message;
         element.querySelector('.message__time').textContent = _dateFns.format(new Date(), '	HH:mm');
         _uiElements.UI_ELEMENTS.CHAT.append(element);
-        _uiElements.UI_ELEMENTS.INPUTS.MESSAGE.value = '';
+        _main.clearInput(_uiElements.UI_ELEMENTS.INPUTS.MESSAGE);
     } else {
         const element = document.createElement('div');
         element.className = 'message__wrapper other-message';
@@ -694,7 +695,7 @@ function createMessage(id, name, text, time) {
  //
  // const myMessage = new Message()
 
-},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","date-fns":"9yHCA","./constants":"1j8D1","./requests":"SLwc6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main":"bDbGG"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -3748,6 +3749,7 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _showserverresponse = require("./showserverresponse");
 var _message = require("./message");
+var _main = require("./main");
 const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${_jsCookieDefault.default.get('authorization_token')}`);
 async function getCode() {
     event.preventDefault();
@@ -3756,7 +3758,10 @@ async function getCode() {
         const response = await _axiosDefault.default.post(_constants.URL, {
             email: String(email)
         });
-        if (response.status === 200) _showserverresponse.responseSuccess();
+        if (response.status === 200) {
+            _main.clearInput(_uiElements.UI_ELEMENTS.INPUTS.MAIL);
+            _showserverresponse.responseSuccess();
+        }
     } catch (error) {
         _showserverresponse.responseError();
     }
@@ -3773,6 +3778,7 @@ async function authorization() {
     try {
         const response = await _axiosDefault.default.get(_constants.URL_USER_AUTHORIZATION, config);
         if (response.status === 200) {
+            _main.clearInput(_uiElements.UI_ELEMENTS.INPUTS.CODE);
             _constants.USER.name = response.data.name;
             _constants.USER.id = response.data._id;
             await showMessageStory();
@@ -3796,6 +3802,7 @@ async function changeName() {
     try {
         const response = await _axiosDefault.default.patch(_constants.URL, data, config);
         if (response.status === 200) {
+            _main.clearInput(_uiElements.UI_ELEMENTS.INPUTS.NAME);
             _constants.USER.name = name;
             _showserverresponse.responseSuccess();
         }
@@ -3851,7 +3858,7 @@ WEBSOCKET.onclose = (event)=>{
     }
 };
 
-},{"./uiElements":"bu0XR","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
+},{"./uiElements":"bu0XR","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main":"bDbGG"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -7345,6 +7352,15 @@ function responseSuccess() {
     }, 3000);
 }
 
-},{"./uiElements":"bu0XR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
+},{"./uiElements":"bu0XR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bDbGG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "clearInput", ()=>clearInput
+);
+function clearInput(input) {
+    input.value = '';
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
 
 //# sourceMappingURL=index.59310d25.js.map

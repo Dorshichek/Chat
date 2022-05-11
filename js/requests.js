@@ -5,6 +5,7 @@ import {AUTHORIZATION_COOKIE} from "./cookie";
 import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
 import {createMessage} from "./message";
+import {clearInput} from "./main";
 
 export {
   changeName, authorization, getCode
@@ -20,6 +21,7 @@ async function getCode() {
       email: String(email),
     })
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.MAIL)
       responseSuccess()
     }
   } catch (error) {
@@ -39,6 +41,7 @@ async function authorization() {
   try {
     const response = await axios.get(URL_USER_AUTHORIZATION, config)
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.CODE)
       USER.name = response.data.name
       USER.id = response.data._id
       await showMessageStory()
@@ -63,6 +66,7 @@ async function changeName() {
   try {
     const response = await axios.patch(URL, data, config)
     if (response.status === 200) {
+      clearInput(UI_ELEMENTS.INPUTS.NAME)
       USER.name = name
       responseSuccess()
     }

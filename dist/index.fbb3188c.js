@@ -526,7 +526,14 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"bDbGG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "clearInput", ()=>clearInput
+);
+function clearInput(input) {
+    input.value = '';
+}
 
-},{}]},["huMbS","bDbGG"], "bDbGG", "parcelRequire25d8")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["huMbS","bDbGG"], "bDbGG", "parcelRequire25d8")
 
 //# sourceMappingURL=index.fbb3188c.js.map
