@@ -1,7 +1,7 @@
 import {UI_ELEMENTS} from "./uielements";
 
 export function clearInput(input) {
-  input.value = ''
+  return input.value = ''
 }
 
 export function closeModal() {
@@ -11,7 +11,11 @@ export function closeModal() {
   })
 }
 
-export function showModal(defaultValue = UI_ELEMENTS.MODALS.WRAPPER, modal) {
-  defaultValue.classList.add('modal-active')
+export function showModal(modal) {
+  UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active')
   modal.classList.add('modal-active')
+}
+
+function newMessageScroll() {
+
 }

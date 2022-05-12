@@ -23,6 +23,7 @@ const UI_ELEMENTS = {
 
   MODALS: {
     WRAPPER: document.querySelector('.modal'),
+    OVERFLOW: document.querySelector('.modal__overflow'),
     SETTINGS: document.querySelector('.modal-settings'),
     AUTHORIZATION: document.querySelector('.modal-authorization'),
     CODE: document.querySelector('.modal-code'),

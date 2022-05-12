@@ -27,6 +27,12 @@ export function init() {
       UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active')
     })
   })
+  // UI_ELEMENTS.MODALS.OVERFLOW.addEventListener('click', function (event) {
+  //   if (event.target.className === 'modal__close') {
+  //     UI_ELEMENTS.MODALS.WRAPPER.classList.remove('modal-active')
+  //     event.currentTarget.classList.remove('modal-active')
+  //   }
+  // })
 
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 

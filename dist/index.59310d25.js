@@ -554,13 +554,19 @@ function init() {
             _uielements.UI_ELEMENTS.MODALS.CODE.classList.remove('modal-active');
         });
     });
+    // UI_ELEMENTS.MODALS.OVERFLOW.addEventListener('click', function (event) {
+    //   if (event.target.className === 'modal__close') {
+    //     UI_ELEMENTS.MODALS.WRAPPER.classList.remove('modal-active')
+    //     event.currentTarget.classList.remove('modal-active')
+    //   }
+    // })
     _uielements.UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', _api.getCode);
     _uielements.UI_ELEMENTS.BUTTONS.SEND_MESSAGE.addEventListener('click', _api.sendMessage);
     _uielements.UI_ELEMENTS.BUTTONS.SEND_NAME.addEventListener('click', _api.changeName);
     _uielements.UI_ELEMENTS.BUTTONS.SEND_CODE.addEventListener('click', _api.authorization);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./api":"6yDOL","./uielements":"eAreM"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./uielements":"eAreM","./api":"6yDOL"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -590,7 +596,43 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"6yDOL":[function(require,module,exports) {
+},{}],"eAreM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
+);
+const UI_ELEMENTS = {
+    BUTTONS: {
+        CLOSE: document.querySelectorAll('.modal__close'),
+        SEND_MESSAGE: document.querySelector('.form__send-message'),
+        GET_CODE: document.querySelector('.modal-authorization__send'),
+        SETTINGS: document.querySelector('.header__settings'),
+        CONFIRM: document.querySelector('.header__confirm'),
+        AUTHORIZATION: document.querySelector('.header__authorization'),
+        SEND_NAME: document.querySelector('.modal-settings__send'),
+        SEND_CODE: document.querySelector('.modal-code__send')
+    },
+    INPUTS: {
+        MESSAGE: document.querySelector('.form__message'),
+        MAIL: document.querySelector('.modal-authorization__input'),
+        CODE: document.querySelector('.modal-code__input'),
+        NAME: document.querySelector('.modal-settings__input')
+    },
+    MODALS: {
+        WRAPPER: document.querySelector('.modal'),
+        OVERFLOW: document.querySelector('.modal__overflow'),
+        SETTINGS: document.querySelector('.modal-settings'),
+        AUTHORIZATION: document.querySelector('.modal-authorization'),
+        CODE: document.querySelector('.modal-code')
+    },
+    TEMPLATE: {
+        MESSAGE: document.querySelector('.message')
+    },
+    CHAT: document.querySelector('.chat__wrapper'),
+    CONTAINER: document.querySelector('.chat__container')
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6yDOL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "changeName", ()=>changeName
@@ -726,7 +768,7 @@ WEBSOCKET.onclose = (event)=>{
     }
 };
 
-},{"axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./uielements":"eAreM","./main":"bDbGG"}],"jo6P5":[function(require,module,exports) {
+},{"./uielements":"eAreM","axios":"jo6P5","./constants":"1j8D1","./cookie":"iflT4","js-cookie":"c8bBu","./showserverresponse":"1XFq7","./message":"lGCpb","./main":"bDbGG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -4237,42 +4279,7 @@ function responseSuccess() {
     }, 3000);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./uielements":"eAreM"}],"eAreM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "UI_ELEMENTS", ()=>UI_ELEMENTS
-);
-const UI_ELEMENTS = {
-    BUTTONS: {
-        CLOSE: document.querySelectorAll('.modal__close'),
-        SEND_MESSAGE: document.querySelector('.form__send-message'),
-        GET_CODE: document.querySelector('.modal-authorization__send'),
-        SETTINGS: document.querySelector('.header__settings'),
-        CONFIRM: document.querySelector('.header__confirm'),
-        AUTHORIZATION: document.querySelector('.header__authorization'),
-        SEND_NAME: document.querySelector('.modal-settings__send'),
-        SEND_CODE: document.querySelector('.modal-code__send')
-    },
-    INPUTS: {
-        MESSAGE: document.querySelector('.form__message'),
-        MAIL: document.querySelector('.modal-authorization__input'),
-        CODE: document.querySelector('.modal-code__input'),
-        NAME: document.querySelector('.modal-settings__input')
-    },
-    MODALS: {
-        WRAPPER: document.querySelector('.modal'),
-        SETTINGS: document.querySelector('.modal-settings'),
-        AUTHORIZATION: document.querySelector('.modal-authorization'),
-        CODE: document.querySelector('.modal-code')
-    },
-    TEMPLATE: {
-        MESSAGE: document.querySelector('.message')
-    },
-    CHAT: document.querySelector('.chat__wrapper'),
-    CONTAINER: document.querySelector('.chat__container')
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lGCpb":[function(require,module,exports) {
+},{"./uielements":"eAreM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lGCpb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "createMessage", ()=>createMessage
@@ -4340,7 +4347,7 @@ function createMessage(id, name, text, time) {
  //
  // const myMessage = new Message()
 
-},{"date-fns":"9yHCA","./constants":"1j8D1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./uielements":"eAreM","./main":"bDbGG"}],"9yHCA":[function(require,module,exports) {
+},{"./uielements":"eAreM","date-fns":"9yHCA","./constants":"1j8D1","./main":"bDbGG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.js`. Please, don't change it.
@@ -7366,7 +7373,7 @@ parcelHelpers.export(exports, "showModal", ()=>showModal
 );
 var _uielements = require("./uielements");
 function clearInput(input) {
-    input.value = '';
+    return input.value = '';
 }
 function closeModal() {
     const modals = document.querySelectorAll('.modal-active');
@@ -7374,10 +7381,11 @@ function closeModal() {
         modal.classList.remove('modal-active');
     });
 }
-function showModal(defaultValue = _uielements.UI_ELEMENTS.MODALS.WRAPPER, modal) {
-    defaultValue.classList.add('modal-active');
+function showModal(modal) {
+    _uielements.UI_ELEMENTS.MODALS.WRAPPER.classList.add('modal-active');
     modal.classList.add('modal-active');
 }
+function newMessageScroll() {}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./uielements":"eAreM"}]},["91cYP","1bqZL"], "1bqZL", "parcelRequire25d8")
 
