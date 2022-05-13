@@ -18,7 +18,6 @@ function createMessage(id, name, text, time) {
     element.querySelector('.message__text').textContent = USER.name + ': ' + message
     element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
     UI_ELEMENTS.CHAT.append(element)
-    // clearInput(UI_ELEMENTS.INPUTS.MESSAGE.textContent)
     UI_ELEMENTS.INPUTS.MESSAGE.value = ''
   } else {
     const element = document.createElement('div')

@@ -6,12 +6,11 @@ import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
 import {createMessage} from "./message";
 import {clearInput, closeModal, showModal} from "./main";
+import ReconnectingWebSocket from "reconnecting-websocket";
 
 export {
   changeName, authorization, getCode
 }
-
-export const WEBSOCKET = new WebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`)
 
 async function getCode() {
   event.preventDefault()
@@ -47,6 +46,7 @@ async function authorization() {
       USER.name = response.data.name
       USER.id = response.data._id
       await showMessageStory()
+      websocketConnect()
       responseSuccess()
       closeModal()
     }
@@ -105,14 +105,36 @@ function getLastMessages(messages) {
   })
 }
 
-
-WEBSOCKET.onopen = () => {
-  console.log('Connection')
+const options = {
+  reconnectInterval: 1000,
 }
 
-WEBSOCKET.onmessage = (event) => {
-  const message = JSON.parse(event.data)
-  createMessage(message._id, message.user.name, message.text, message.createdAt)
+const WEBSOCKET = new ReconnectingWebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`,[], options)
+
+function websocketConnect() {
+
+  WEBSOCKET.onopen = () => {
+    console.log('Connection')
+  }
+
+  WEBSOCKET.onmessage = (event) => {
+    const message = JSON.parse(event.data)
+    createMessage(message._id, message.user.name, message.text, message.createdAt)
+  }
+
+  WEBSOCKET.onerror = (error) => {
+    console.log(error)
+  }
+
+  WEBSOCKET.onclose = (event) => {
+    if (event.wasClean) {
+      console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+    } else {
+      console.log("[close] Соединение прервано");
+      setTimeout(() => {
+      }, 1000);
+    }
+  }
 }
 
 export async function sendMessage() {
@@ -124,18 +146,4 @@ export async function sendMessage() {
         text: text,
       })
   );
-}
-
-WEBSOCKET.onerror = (error) => {
-  console.log(error)
-}
-
-WEBSOCKET.onclose = (event) => {
-  if (event.wasClean) {
-    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
-  } else {
-    console.log("[close] Соединение прервано");
-    setTimeout(() => {
-    }, 5000);
-  }
 }
