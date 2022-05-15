@@ -33,6 +33,7 @@ const UI_ELEMENTS = {
     MESSAGE: document.querySelector('.message'),
   },
 
-  CHAT: document.querySelector('.chat__wrapper'),
+  CHAT: document.querySelector('.chat'),
+  CHAT_WRAPPER: document.querySelector('.chat__wrapper'),
   CONTAINER: document.querySelector('.chat__container'),
 }

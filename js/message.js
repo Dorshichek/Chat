@@ -1,7 +1,7 @@
 import {UI_ELEMENTS} from "./uielements";
 import {format} from "date-fns";
 import {USER} from "./constants";
-import {clearInput} from "./main";
+import {bottomToScroll} from "./main";
 
 export {
   createMessage
@@ -17,7 +17,7 @@ function createMessage(id, name, text, time) {
     element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
     element.querySelector('.message__text').textContent = USER.name + ': ' + message
     element.querySelector('.message__time').textContent = format(new Date(), '	HH:mm')
-    UI_ELEMENTS.CHAT.append(element)
+    UI_ELEMENTS.CHAT_WRAPPER.append(element)
     UI_ELEMENTS.INPUTS.MESSAGE.value = ''
   } else {
     const element = document.createElement('div')
@@ -25,7 +25,8 @@ function createMessage(id, name, text, time) {
     element.append(UI_ELEMENTS.TEMPLATE.MESSAGE.content.cloneNode(true))
     element.querySelector('.message__text').textContent = name + ': ' + text
     element.querySelector('.message__time').textContent = time.slice(11, 16)
-    UI_ELEMENTS.CHAT.append(element)
+    UI_ELEMENTS.CHAT_WRAPPER.append(element)
+    bottomToScroll()
   }
 }
 

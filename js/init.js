@@ -1,5 +1,6 @@
 import {UI_ELEMENTS} from "./uielements";
 import {getCode, changeName, authorization, sendMessage} from "./api";
+import {pagination} from "./api";
 
 document.addEventListener('DOMContentLoaded', init)
 
@@ -33,6 +34,8 @@ export function init() {
   //     event.currentTarget.classList.remove('modal-active')
   //   }
   // })
+
+  UI_ELEMENTS.CHAT.addEventListener('scroll', pagination)
 
   UI_ELEMENTS.BUTTONS.GET_CODE.addEventListener('click', getCode)
 

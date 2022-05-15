@@ -5,8 +5,9 @@ import {AUTHORIZATION_COOKIE} from "./cookie";
 import Cookies from "js-cookie";
 import {responseError, responseSuccess} from "./showserverresponse";
 import {createMessage} from "./message";
-import {clearInput, closeModal, showModal} from "./main";
+import {bottomToScroll, clearInput, closeModal, showModal} from "./main";
 import ReconnectingWebSocket from "reconnecting-websocket";
+
 
 export {
   changeName, authorization, getCode
@@ -98,18 +99,40 @@ async function showMessageStory() {
   }
 }
 
+const lastMessages = []
+
 function getLastMessages(messages) {
-  let lastMessages = messages.slice(-15)
-  lastMessages.forEach((message) => {
+  // const messagesReverse = messages.reverse()
+  const stepSlice = 15
+  for (let i = 0; i < messages.length; i += stepSlice) {
+    lastMessages.push(messages.slice(i, i + stepSlice))
+  }
+  // showMessages(lastMessages)
+  lastMessages.pop().reverse().forEach((message) => {
     createMessage(message._id, message.user.name, message.text, message.createdAt)
   })
+  pagination()
+}
+
+export function pagination() {
+  let scrollWidth = UI_ELEMENTS.CHAT.scrollTop - UI_ELEMENTS.CHAT.offsetHeight
+  console.log(lastMessages)
+  if (UI_ELEMENTS.CHAT.scrollHeight + scrollWidth <= 0) {
+    lastMessages.pop().forEach((message) => {
+      console.log(message)
+      createMessage(message._id, message.user.name, message.text, message.createdAt)
+    })
+
+  } else if (lastMessages.length === 0) {
+    console.log('VSE')
+  }
 }
 
 const options = {
   reconnectInterval: 1000,
 }
 
-const WEBSOCKET = new ReconnectingWebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`,[], options)
+const WEBSOCKET = new ReconnectingWebSocket(`wss://mighty-cove-31255.herokuapp.com/websockets?${Cookies.get('authorization_token')}`, [], options)
 
 function websocketConnect() {
 
@@ -146,4 +169,5 @@ export async function sendMessage() {
         text: text,
       })
   );
+  bottomToScroll()
 }

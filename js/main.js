@@ -16,6 +16,10 @@ export function showModal(modal) {
   modal.classList.add('modal-active')
 }
 
-function newMessageScroll() {
-
+export function bottomToScroll() {
+  UI_ELEMENTS.CHAT.scrollTo(0, 0)
 }
+
+// export function pagination() {
+//
+// }
